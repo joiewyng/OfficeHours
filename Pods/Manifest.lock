@@ -1,0 +1,35 @@
+PODS:
+  - Alamofire (4.7.3)
+  - GoogleAPIClient (1.0.5):
+    - GoogleAPIClient/Core (= 1.0.5)
+    - GTMSessionFetcher (~> 1.1)
+  - GoogleAPIClient/Core (1.0.5):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.2.0):
+    - GTMSessionFetcher/Full (= 1.2.0)
+  - GTMSessionFetcher/Core (1.2.0)
+  - GTMSessionFetcher/Full (1.2.0):
+    - GTMSessionFetcher/Core (= 1.2.0)
+  - SnapKit (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.6)
+  - GoogleAPIClient
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - GoogleAPIClient
+    - GTMSessionFetcher
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  GoogleAPIClient: 77df755d41d70ee5a99b7b752614fbb439f19438
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+
+PODFILE CHECKSUM: 6d186f70a308d256e10c084e3590396b9993c0f5
+
+COCOAPODS: 1.5.3
