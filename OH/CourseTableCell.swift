@@ -46,10 +46,12 @@ class CourseTableCell: UITableViewCell {
             make.centerY.equalTo(contentView.snp.centerY)
         }
     }
-    func configure(course: Course) {
+    func configure(for course: Course) {
         nameButton.setTitle(course.name, for: .normal)
 //        nameButton.titleLabel?.text = course.name
     }
+    
+    
     @objc func pressed() {
         if (nameButton.isSelected) {
             nameButton.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)

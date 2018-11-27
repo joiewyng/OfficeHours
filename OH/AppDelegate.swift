@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.backgroundColor = .white
         
-        UINavigationBar.appearance().barTintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+        //UINavigationBar.appearance().barTintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+        UINavigationBar.appearance().barTintColor = .white
         UITabBar.appearance().tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         ohTabBarController = OHTabBarController()
         window?.rootViewController = ohTabBarController

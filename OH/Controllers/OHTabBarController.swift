@@ -10,8 +10,9 @@ import UIKit
 
 class OHTabBarController: UITabBarController {
 
-    let detailsViewController = DetailsViewController()
+    //let detailsViewController = DetailsViewController()
     let calendarViewController = CalendarViewController()
+    let detailsViewController = VoteViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
