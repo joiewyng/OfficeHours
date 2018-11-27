@@ -12,11 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var ohTabBarController: OHTabBarController!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        
+        window = UIWindow()
+        window?.backgroundColor = .white
+        
+        UITabBar.appearance().tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+        ohTabBarController = OHTabBarController()
+        window?.rootViewController = ohTabBarController
+        
+//        window?.rootViewController = UINavigationController(rootViewController: ViewController())
         window?.makeKeyAndVisible()
         return true
     }

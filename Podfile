@@ -9,6 +9,8 @@ target 'OH' do
 pod 'SnapKit'
 pod 'Alamofire', '~> 4.6'
 pod 'GoogleAPIClient'
+pod 'SwiftyJSON'
+pod 'JTAppleCalendar', '~> 7.1'
 
   target 'OHTests' do
     inherit! :search_paths

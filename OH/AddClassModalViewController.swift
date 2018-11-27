@@ -1,14 +1,14 @@
 //
-//  CalendarViewController.swift
+//  AddClassModalViewController.swift
 //  OH
 //
-//  Created by Joie Ng on 11/19/18.
+//  Created by Li Chai on 11/27/18.
 //  Copyright © 2018 Joie Ng. All rights reserved.
 //
 
 import UIKit
 
-class CalendarViewController: UIViewController {
+class AddClassModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -5,13 +5,11 @@
 //  Created by Joie Ng on 11/18/18.
 //  Copyright © 2018 Joie Ng. All rights reserved.
 //
-//tabs:
-//https://github.com/cuappdev/eatery/blob/master/Eatery/Controllers/EateryTabBarController.swift
 
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     var loginButton: UIButton!
     var appNameLabel: UILabel!

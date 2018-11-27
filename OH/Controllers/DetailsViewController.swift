@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class DetailsViewController: ViewController {
+class DetailsViewController: UIViewController {
 
     var courseAbbrvLabel: UILabel!
     
@@ -17,9 +17,11 @@ class DetailsViewController: ViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
         var teacher = Teacher(type: .instructor, name: "François Guimbretière", email: "francois@cornell.edu", location: "241 Gates Hall")
         var instructors = [teacher]
         var course = Course(name: "Rapid Prototyping and Physical Computing", abbrv: "INFO4320", instructors: instructors)
+        
         courseAbbrvLabel = UILabel()
         courseAbbrvLabel.text = course.abbrv
         courseAbbrvLabel.textColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
@@ -28,7 +30,7 @@ class DetailsViewController: ViewController {
         setupConstraints()
     }
     
-    override func setupConstraints() {
+    func setupConstraints() {
         courseAbbrvLabel.snp.makeConstraints { make in
             make.height.equalTo(100)
             make.top.equalTo(self.view.snp_top).offset(70)

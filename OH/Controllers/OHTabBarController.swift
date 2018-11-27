@@ -17,16 +17,16 @@ class OHTabBarController: UITabBarController {
         super.viewDidLoad()
         
 //        delegate = self as! UITabBarControllerDelegate?
-        let calendarNavigationController = UINavigationController(rootViewController: self.calendarViewController)
+        let calendarNavigationController = UINavigationController(rootViewController: calendarViewController)
         calendarNavigationController.navigationBar.barStyle = .black
         calendarNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "unselectedcalendarbaricon"), tag: 0)
         
-        let detailNavigationController = UINavigationController(rootViewController: detailsViewController)
-        detailNavigationController.navigationBar.barStyle = .black
-        detailNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "unselectedinfoicon"), tag: 1)
+        let detailsNavigationController = UINavigationController(rootViewController: detailsViewController)
+        detailsNavigationController.navigationBar.barStyle = .black
+        detailsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "unselectedinfoicon"), tag: 1)
 
-        let navigationControllers = [calendarNavigationController, detailNavigationController]
-        navigationControllers.forEach { $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0) }
+        let navigationControllers = [calendarNavigationController, detailsNavigationController]
+//        navigationControllers.forEach { $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0) }
         setViewControllers(navigationControllers, animated: false)
         
         // Do any additional setup after loading the view.
