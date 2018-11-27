@@ -33,7 +33,7 @@ class DetailsViewController: UIViewController {
     func setupConstraints() {
         courseAbbrvLabel.snp.makeConstraints { make in
             make.height.equalTo(100)
-            make.top.equalTo(self.view.snp_top).offset(70)
+            make.top.equalTo(self.view.snp.top).offset(70)
             
         }
     }
