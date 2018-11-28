@@ -10,7 +10,6 @@ import UIKit
 
 class OHTabBarController: UITabBarController {
 
-    //let detailsViewController = DetailsViewController()
     let calendarViewController = CalendarViewController()
     let voteViewController = VoteViewController()
     

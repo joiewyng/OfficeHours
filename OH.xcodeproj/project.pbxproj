@@ -13,6 +13,7 @@
 		0A0EF96721ADA5150019C8BD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96621ADA5150019C8BD /* NetworkManager.swift */; };
 		0A0EF96A21AE8C3F0019C8BD /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96921AE8C3F0019C8BD /* Style.swift */; };
 		0A0EF96C21AE8F240019C8BD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96B21AE8F240019C8BD /* CalendarCell.swift */; };
+		0A0EF96E21AF035F0019C8BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */; };
 		36E8AC7821A1F09200271556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7721A1F09200271556 /* AppDelegate.swift */; };
 		36E8AC7A21A1F09300271556 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7921A1F09300271556 /* LoginViewController.swift */; };
 		36E8AC7F21A1F09900271556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E8AC7E21A1F09900271556 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		0A0EF96621ADA5150019C8BD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0A0EF96921AE8C3F0019C8BD /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		0A0EF96B21AE8F240019C8BD /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarCell.swift; path = OH/Cells/CalendarCell.swift; sourceTree = SOURCE_ROOT; };
+		0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A9041214B4318D6CD896603 /* Pods-OH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OH.release.xcconfig"; path = "Pods/Target Support Files/Pods-OH/Pods-OH.release.xcconfig"; sourceTree = "<group>"; };
 		36E8AC7421A1F09200271556 /* OH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E8AC7721A1F09200271556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				0A0EF96921AE8C3F0019C8BD /* Style.swift */,
 				36E8AC7E21A1F09900271556 /* Assets.xcassets */,
 				36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */,
+				0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */,
 				36E8AC8321A1F09900271556 /* Info.plist */,
 				0A0EF95F21AD91D80019C8BD /* AddClassModalViewController.swift */,
 				0A0EF96621ADA5150019C8BD /* NetworkManager.swift */,
@@ -237,6 +240,7 @@
 				36E8AC7121A1F09200271556 /* Frameworks */,
 				36E8AC7221A1F09200271556 /* Resources */,
 				EA826D6D503885371055C915 /* [CP] Embed Pods Frameworks */,
+				3C539919AD5FEE56B9E3459E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -335,6 +339,7 @@
 			files = (
 				36E8AC8221A1F09900271556 /* LaunchScreen.storyboard in Resources */,
 				36E8AC7F21A1F09900271556 /* Assets.xcassets in Resources */,
+				0A0EF96E21AF035F0019C8BD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +360,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C539919AD5FEE56B9E3459E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OH/Pods-OH-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OH/Pods-OH-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4186B81C4CA2417EB3637423 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,8 +458,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OH/Pods-OH-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClient/GoogleAPIClient.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -442,8 +470,9 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",

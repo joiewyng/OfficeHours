@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -20,11 +21,12 @@ class LoginViewController: UIViewController {
         view.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         
         loginButton = UIButton()
-        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitle("Sign in with Google", for: .normal)
         loginButton.setTitleColor(UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0), for: .normal)
         loginButton.backgroundColor = .white
         loginButton.layer.cornerRadius = 10
-        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        loginButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
         view.addSubview(loginButton)
         
         appNameLabel = UILabel()
@@ -43,19 +45,28 @@ class LoginViewController: UIViewController {
           
             make.height.equalTo(48)
             make.width.equalTo(200)
-            make.bottom.equalTo(self.view.snp.bottom).offset(-200)
+            make.bottom.equalToSuperview().offset(-200)
             make.centerX.equalToSuperview()
         }
         
         appNameLabel.snp.makeConstraints { make in
             
             make.height.equalTo(70)
-            make.width.equalTo(200)
-            make.bottom.equalTo(self.view.snp.bottom).offset(-600)
+//            make.width.equalTo(200)
+            make.bottom.equalToSuperview().offset(-600)
             make.centerX.equalToSuperview()
         }
     }
 
-
+    @objc func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+                      withError error: NSError!) {
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            let loginStatus = true
+            UserDefaults.standard.set(true, forKey: "loginStatus")
+        } else {
+//            print("\(error.localizedDescription)")
+        }
+    }
 }
 
