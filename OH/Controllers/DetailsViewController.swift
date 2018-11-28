@@ -12,15 +12,12 @@ import SnapKit
 class DetailsViewController: UIViewController {
 
     var courseAbbrvLabel: UILabel!
+    var course: Course!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        var teacher = Teacher(type: .instructor, name: "François Guimbretière", email: "francois@cornell.edu", location: "241 Gates Hall")
-        var instructors = [teacher]
-        var course = Course(name: "Rapid Prototyping and Physical Computing", abbrv: "INFO4320", instructors: instructors)
         
         courseAbbrvLabel = UILabel()
         courseAbbrvLabel.text = course.abbrv

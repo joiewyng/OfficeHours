@@ -9,12 +9,19 @@
 import UIKit
 import SnapKit
 
+protocol DetailPressedDelegate {
+    func buttonPressed(index: Int)
+}
+
 class CourseTableCell: UITableViewCell {
     
     var nameButton: UIButton!
     var detailButton: UIButton!
     
+    var index = 0 // index of the cell that has selected button
     let padding: CGFloat = 8
+    
+    var delegate: DetailPressedDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,9 +29,13 @@ class CourseTableCell: UITableViewCell {
         contentView.backgroundColor = .white
         
         nameButton = UIButton()
-        nameButton.setTitleColor(.gray, for: .normal)
-        nameButton.backgroundColor = .white
+        nameButton.setTitleColor(UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0), for: .normal)
+        nameButton.setTitleColor(.white, for: .selected)
+        nameButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        nameButton.layer.cornerRadius = 8.0
         nameButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        nameButton.contentEdgeInsets = UIEdgeInsets(top: padding*2, left: padding*4, bottom: padding*2, right: padding*4)
+
 //        nameButton.tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         
         detailButton = UIButton()
@@ -41,10 +52,11 @@ class CourseTableCell: UITableViewCell {
     func setupConstraints() {
         nameButton.snp.makeConstraints{ make in
             make.top.equalTo(contentView.snp.top).offset(padding)
-            make.leading.equalTo(contentView.snp.leading).offset(padding)
+            make.leading.equalTo(contentView.snp.leading).offset(padding * 2)
         }
         detailButton.snp.makeConstraints{make in
-            make.trailing.equalTo(contentView.snp.trailing).offset(padding * (-1))
+            make.top.equalTo(contentView.snp.top).offset(padding * 2)
+            make.trailing.equalTo(contentView.snp.trailing).offset(padding * (-2))
         }
     }
 //    override func updateConstraints() {
@@ -65,21 +77,18 @@ class CourseTableCell: UITableViewCell {
         nameButton.setTitle(course.abbrv, for: .normal)
     }
     
-    
     @objc func pressed() {
         if (nameButton.isSelected) {
             nameButton.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
-            nameButton.setTitleColor(.white, for: .selected)
         } else {
-            nameButton.backgroundColor = .white
-            nameButton.setTitleColor(.gray, for: .normal)
+            nameButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         }
     }
+    
     @objc func viewDetail() {
-        let detailVC = DetailsViewController()
-//        detailVC.delegate = self
-        present(detailVC, animated: true, completion: nil)
+        delegate?.buttonPressed(index: index)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

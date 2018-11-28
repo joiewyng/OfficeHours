@@ -8,31 +8,34 @@
 
 import UIKit
 import SnapKit
+import JTAppleCalendar
 
 class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    var tableView: UITableView!
+    
+    var calendarView: JTAppleCalendarView!
+    let formatter = DateFormatter()
+    
     var titleLabel: UILabel!
+    var tableView: UITableView!
+    
     var courseList: [Course]!
-    
-    var sampleButton: UIButton!
-    
     let reuseIdentifier = "courseCellReuse"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Office Hour"
         
+        calendarView = JTAppleCalendarView(frame: .zero)
+        calendarView.scrollDirection = .horizontal
+        calendarView.showsVerticalScrollIndicator = false
+        calendarView.showsHorizontalScrollIndicator = false
+        calendarView.isPagingEnabled = true
+        
+        view.addSubview(calendarView)
+        
         titleLabel = UILabel()
         titleLabel.text = "please show up"
         view.addSubview(titleLabel)
-        
-        sampleButton = UIButton()
-        sampleButton.setTitleColor(.gray, for: .normal)
-        sampleButton.backgroundColor = .white
-        sampleButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-        sampleButton.setTitle("Button", for: .normal)
-        view.addSubview(sampleButton)
         
         getCourses()
         
@@ -42,14 +45,12 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.register(CourseTableCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
-        
-        
-    
+
         setupConstraints()
     }
     
+    // get courses from supposably JSON, now hard-coded
     func getCourses() {
-        // hard-code course list
         let teacher1 = Teacher(type: .instructor, name: "François Guimbretière", email: "francois@cornell.edu", location: "241 Gates Hall")
         let teacher2 = Teacher(type: .instructor, name: "D. Gries", email: "dgries@cornell.edu", location: "185-Aud Statler Hall")
         let course1 = Course(name: "Rapid Prototyping and Physical Computing", abbrv: "INFO4320", instructors:[teacher1])
@@ -58,6 +59,10 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setupConstraints(){
+        calendarView.snp.makeConstraints{ make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(380)
+        }
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(400)
             make.leading.trailing.bottom.equalToSuperview()
@@ -67,16 +72,16 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         titleLabel.snp.makeConstraints{make in
             make.top.equalToSuperview().offset(200)
         }
-        sampleButton.snp.makeConstraints{make in
-            make.top.equalToSuperview().offset(240)
-        }
     }
-
+    
+    // list of courses tableView configurations
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CourseTableCell
         let course = courseList[indexPath.row]
         cell.configure(for: course)
+        cell.index = indexPath.row
         cell.selectionStyle = .none
+        cell.delegate = self
 //        cell.needsUpdateConstraints()
         return cell
         
@@ -90,17 +95,37 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    
-    @objc func pressed() {
-        if (sampleButton.isSelected) {
-            sampleButton.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
-            sampleButton.setTitleColor(.white, for: .selected)
-            sampleButton.setTitle("selected!", for: .selected)
-        } else {
-            sampleButton.backgroundColor = .white
-            sampleButton.setTitleColor(.gray, for: .normal)
-        }
+}
+
+extension CalendarViewController: DetailPressedDelegate {
+    func buttonPressed(index: Int) {
+        let detailVC = DetailsViewController()
+        detailVC.course = courseList[index]
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        let calendarCell = cell as! CalendarCell
     }
     
-
+    
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = Calendar.current.timeZone
+        formatter.locale = Calendar.current.locale
+        
+        let startDate = formatter.date(from: "2018 08 01")!
+        let endDate = formatter.date(from: formatter.string(from: Date()))!
+        
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
+        return parameters
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
+        cell.dateLabel.text = cellState.text
+        return cell
+    }
 }

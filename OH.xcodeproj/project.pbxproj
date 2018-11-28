@@ -11,6 +11,8 @@
 		0A0EF96321AD9BA40019C8BD /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96221AD9BA40019C8BD /* VoteViewController.swift */; };
 		0A0EF96521AD9CD40019C8BD /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96421AD9CD40019C8BD /* RequestViewController.swift */; };
 		0A0EF96721ADA5150019C8BD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96621ADA5150019C8BD /* NetworkManager.swift */; };
+		0A0EF96A21AE8C3F0019C8BD /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96921AE8C3F0019C8BD /* Style.swift */; };
+		0A0EF96C21AE8F240019C8BD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96B21AE8F240019C8BD /* CalendarCell.swift */; };
 		36E8AC7821A1F09200271556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7721A1F09200271556 /* AppDelegate.swift */; };
 		36E8AC7A21A1F09300271556 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7921A1F09300271556 /* LoginViewController.swift */; };
 		36E8AC7F21A1F09900271556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E8AC7E21A1F09900271556 /* Assets.xcassets */; };
@@ -51,6 +53,8 @@
 		0A0EF96221AD9BA40019C8BD /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		0A0EF96421AD9CD40019C8BD /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		0A0EF96621ADA5150019C8BD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0A0EF96921AE8C3F0019C8BD /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		0A0EF96B21AE8F240019C8BD /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarCell.swift; path = OH/Cells/CalendarCell.swift; sourceTree = SOURCE_ROOT; };
 		1A9041214B4318D6CD896603 /* Pods-OH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OH.release.xcconfig"; path = "Pods/Target Support Files/Pods-OH/Pods-OH.release.xcconfig"; sourceTree = "<group>"; };
 		36E8AC7421A1F09200271556 /* OH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E8AC7721A1F09200271556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 			children = (
 				36E8ACB121ADB4DE00271556 /* CourseTableCell.swift */,
 				36E8ACB521ADFB8300271556 /* VoteCollectionViewCell.swift */,
+				0A0EF96B21AE8F240019C8BD /* CalendarCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				0A0EF95C21AD8E460019C8BD /* Controllers */,
 				0A0EF96821AE7B110019C8BD /* Cells */,
 				36E8AC7721A1F09200271556 /* AppDelegate.swift */,
+				0A0EF96921AE8C3F0019C8BD /* Style.swift */,
 				36E8AC7E21A1F09900271556 /* Assets.xcassets */,
 				36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */,
 				36E8AC8321A1F09900271556 /* Info.plist */,
@@ -455,8 +461,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E8ACAA21A337A700271556 /* Teacher.swift in Sources */,
+				0A0EF96A21AE8C3F0019C8BD /* Style.swift in Sources */,
 				36E8AC7A21A1F09300271556 /* LoginViewController.swift in Sources */,
 				0A0EF96521AD9CD40019C8BD /* RequestViewController.swift in Sources */,
+				0A0EF96C21AE8F240019C8BD /* CalendarCell.swift in Sources */,
 				36E8ACAC21A338E800271556 /* Course.swift in Sources */,
 				0A0EF96721ADA5150019C8BD /* NetworkManager.swift in Sources */,
 				36E8ACB221ADB4DE00271556 /* CourseTableCell.swift in Sources */,

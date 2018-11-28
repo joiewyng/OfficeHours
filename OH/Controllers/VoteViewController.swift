@@ -34,9 +34,10 @@ class VoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Vote/Request"
+        
         segmentControl = UISegmentedControl(items: ["Vote", "Request"])
         segmentControl.tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
-        view.addSubview(titleLabel1)
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(switchView), for: .valueChanged)
         view.addSubview(segmentControl)
@@ -93,8 +94,11 @@ class VoteViewController: UIViewController {
         submitButton.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         submitButton.setTitle("Submit", for: .normal)
         submitButton.setTitleColor(.white, for: .normal)
-        submitButton.layer.cornerRadius = 10
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        submitButton.layer.cornerRadius = 10.0
+        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        submitButton.titleLabel?.textAlignment = .center
+        submitButton.layer.masksToBounds = true
+        
         view.addSubview(submitButton)
         
         titleLabel.isHidden = true
