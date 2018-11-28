@@ -35,6 +35,8 @@ class VoteViewController: UIViewController {
         super.viewDidLoad()
         
         segmentControl = UISegmentedControl(items: ["Vote", "Request"])
+        segmentControl.tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+        view.addSubview(titleLabel1)
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(switchView), for: .valueChanged)
         view.addSubview(segmentControl)

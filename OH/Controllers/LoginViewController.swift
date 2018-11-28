@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
           
             make.height.equalTo(48)
             make.width.equalTo(200)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-200)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-200)
             make.centerX.equalToSuperview()
         }
         
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
             
             make.height.equalTo(70)
             make.width.equalTo(200)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-600)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-600)
             make.centerX.equalToSuperview()
         }
     }

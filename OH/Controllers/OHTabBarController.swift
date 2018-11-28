@@ -12,7 +12,7 @@ class OHTabBarController: UITabBarController {
 
     //let detailsViewController = DetailsViewController()
     let calendarViewController = CalendarViewController()
-    let detailsViewController = VoteViewController()
+    let voteViewController = VoteViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,16 @@ class OHTabBarController: UITabBarController {
         let calendarNavigationController = UINavigationController(rootViewController: calendarViewController)
         calendarNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "unselectedcalendarbaricon"), tag: 0)
         
-        let detailsNavigationController = UINavigationController(rootViewController: detailsViewController)
-        detailsNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "unselectedinfoicon"), tag: 1)
+        let voteNavigationController = UINavigationController(rootViewController: voteViewController)
+        voteNavigationController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "unselectedinfoicon"), tag: 1)
 
-        let navigationControllers = [calendarNavigationController, detailsNavigationController]
-        navigationControllers.forEach { $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0) }
+        let navigationControllers = [calendarNavigationController, voteNavigationController]
+        navigationControllers.forEach {
+            $0.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            $0.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 10)
+
+        }
+
         setViewControllers(navigationControllers, animated: false)
         
         // Do any additional setup after loading the view.

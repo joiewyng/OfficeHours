@@ -70,7 +70,7 @@
 		36E8ACAD21A33F6E00271556 /* OHTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHTabBarController.swift; sourceTree = "<group>"; };
 		36E8ACAF21A3449000271556 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		36E8ACB121ADB4DE00271556 /* CourseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableCell.swift; sourceTree = "<group>"; };
-		36E8ACB521ADFB8300271556 /* VoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VoteCollectionViewCell.swift; path = OH/VoteCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		36E8ACB521ADFB8300271556 /* VoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VoteCollectionViewCell.swift; path = OH/Cells/VoteCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		3FDE75AC40D0033A7A33DD6B /* Pods_OHTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OHTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E91F586338FCADD04F4CD8A /* Pods-OHUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OHUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OHUITests/Pods-OHUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5045000EB271FCA4FAC59088 /* Pods-OHUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OHUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OHUITests/Pods-OHUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,9 +112,9 @@
 		0A0EF95C21AD8E460019C8BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				36E8ACAF21A3449000271556 /* CalendarViewController.swift */,
 				36E8AC7921A1F09300271556 /* LoginViewController.swift */,
 				36E8ACA721A333E600271556 /* DetailsViewController.swift */,
-				36E8ACAF21A3449000271556 /* CalendarViewController.swift */,
 				36E8ACAD21A33F6E00271556 /* OHTabBarController.swift */,
 				0A0EF96221AD9BA40019C8BD /* VoteViewController.swift */,
 				0A0EF96421AD9CD40019C8BD /* RequestViewController.swift */,
@@ -129,6 +129,15 @@
 				36E8ACAB21A338E800271556 /* Course.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0A0EF96821AE7B110019C8BD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				36E8ACB121ADB4DE00271556 /* CourseTableCell.swift */,
+				36E8ACB521ADFB8300271556 /* VoteCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2F1269A24CF122067C93CFA4 /* Pods */ = {
@@ -171,9 +180,8 @@
 			children = (
 				0A0EF96121AD93F90019C8BD /* Models */,
 				0A0EF95C21AD8E460019C8BD /* Controllers */,
-				36E8ACB521ADFB8300271556 /* VoteCollectionViewCell.swift */,
+				0A0EF96821AE7B110019C8BD /* Cells */,
 				36E8AC7721A1F09200271556 /* AppDelegate.swift */,
-				36E8ACB121ADB4DE00271556 /* CourseTableCell.swift */,
 				36E8AC7E21A1F09900271556 /* Assets.xcassets */,
 				36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */,
 				36E8AC8321A1F09900271556 /* Info.plist */,
