@@ -9,8 +9,7 @@
 import UIKit
 import SnapKit
 import CalendarKit
-//import JTAppleCalendar
-//import JZCalendarWeekView
+import DateToolsSwift
 
 //class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
 class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate {
@@ -18,11 +17,28 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     let formatter = DateFormatter()
     private weak var calendar: FSCalendar!
     
-    var calendarData: [[String]]?
     var tableView: UITableView!
     
     var courseList: [Course]!
     let reuseIdentifier = "courseCellReuse"
+    
+    var calendarData = [["INFO4320",
+                        "François Guimbretière",
+                        "Gates Hall"],
+        
+                        ["CS2110",
+                         "D. Gries",
+                        "Statler Hall"],
+                        
+                        ["INFO4320",
+                        "François Guimbretière",
+                        "Gates Hall"],
+                        
+                        
+                        ["CS2110",
+                        "D. Gries",
+                        "Statler Hall"],
+                        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +55,6 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //        view.addSubview(calendar)
 //        self.calendar = calendar
 
-        getEvents()
         getCourses()
         reloadData()
         
@@ -56,42 +71,6 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 //        JZWeekViewHelper.viewTransitionHandler(to: size, weekView: calendarWeekView)
 ////    }
-//    func getEvents() {
-//        var event1 = "INFO 4320"
-//        calendarData = "INFO 4320",
-//        calendarData = [["Breakfast at Tiffany's",
-//                         "New York, 5th avenue"],
-//                        
-//                        ["Workout",
-//                         "Tufteparken"],
-//                        
-//                        ["Meeting with Alex",
-//                         "Home",
-//                         "Oslo, Tjuvholmen"],
-//                        
-//                        ["Beach Volleyball",
-//                         "Ipanema Beach",
-//                         "Rio De Janeiro"],
-//                        
-//                        ["WWDC",
-//                         "Moscone West Convention Center",
-//                         "747 Howard St"],
-//                        
-//                        ["Google I/O",
-//                         "Shoreline Amphitheatre",
-//                         "One Amphitheatre Parkway"],
-//                        
-//                        ["flight to Svalbard",
-//                         "Oslo Gardermoen"],
-//                        
-//                        ["Developing CalendarKit",
-//                         "Worldwide"],
-//                        
-//                        ["Software Development Lecture",
-//                         "Mikpoli MB310",
-//                         "Craig Federighi"],
-//                        ]
-//    }
     
     // get courses from supposably JSON, now hard-coded
     func getCourses() {
@@ -162,6 +141,40 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //        }
 //        return events
 //    }
-    
+    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
+        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
+        var events = [Event]()
+        var colors = [UIColor.blue,
+                      UIColor.yellow,
+                      UIColor.green,
+                      UIColor.red]
+        
+        for i in 0...4 {
+            let event = Event()
+            let duration = Int(arc4random_uniform(160) + 60)
+            let datePeriod = TimePeriod(beginning: date,
+                                        chunk: TimeChunk.dateComponents(minutes: duration))
+            
+            event.startDate = datePeriod.beginning!
+            event.endDate = datePeriod.end!
+            
+            var info = calendarData[Int(arc4random_uniform(UInt32(calendarData.count)))]
+            
+            let timezone = TimeZone.ReferenceType.default
+            info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
+            info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
+            event.text = info.reduce("", {$0 + $1 + "\n"})
+            event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
+            event.isAllDay = Int(arc4random_uniform(2)) % 2 == 0
+            
+            events.append(event)
+            
+            let nextOffset = Int(arc4random_uniform(250) + 40)
+            date = date.add(TimeChunk.dateComponents(minutes: nextOffset))
+            event.userInfo = String(i)
+        }
+        
+        return events
+    }
 }
 

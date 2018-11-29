@@ -12,6 +12,7 @@ pod 'GoogleSignIn'
 pod 'SwiftyJSON'
 pod 'FSCalendar'
 pod 'CalendarKit'
+pod 'SwiftDate', '~> 4.0'
 
 
 
