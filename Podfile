@@ -10,8 +10,11 @@ pod 'SnapKit'
 pod 'Alamofire', '~> 4.6'
 pod 'GoogleSignIn'
 pod 'SwiftyJSON'
-pod 'JTAppleCalendar', '~> 7.1'
-pod 'MSCollectionViewCalendarLayout'
+pod 'FSCalendar'
+pod 'CalendarKit'
+
+
+
 
   target 'OHTests' do
     inherit! :search_paths

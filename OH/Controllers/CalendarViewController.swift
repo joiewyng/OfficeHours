@@ -8,14 +8,17 @@
 
 import UIKit
 import SnapKit
-import JTAppleCalendar
+import CalendarKit
+//import JTAppleCalendar
+//import JZCalendarWeekView
 
-class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+//class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
+class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var calendarView: JTAppleCalendarView!
     let formatter = DateFormatter()
+    private weak var calendar: FSCalendar!
     
-    var titleLabel: UILabel!
+    var calendarData: [[String]]?
     var tableView: UITableView!
     
     var courseList: [Course]!
@@ -25,19 +28,20 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         title = "Office Hour"
         
-        calendarView = JTAppleCalendarView(frame: .zero)
-        calendarView.scrollDirection = .horizontal
-        calendarView.showsVerticalScrollIndicator = false
-        calendarView.showsHorizontalScrollIndicator = false
-        calendarView.isPagingEnabled = true
-        
-        view.addSubview(calendarView)
-        
-        titleLabel = UILabel()
-        titleLabel.text = "please show up"
-        view.addSubview(titleLabel)
-        
+//        let calendar = FSCalendar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.size.height + 40, width: UIScreen.main.bounds.width, height: 300))
+//        calendar.appearance.selectionColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+//        calendar.appearance.todayColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+//        calendar.appearance.titleTodayColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+//        calendar.appearance.headerTitleColor = .black
+//        calendar.appearance.weekdayTextColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+//        calendar.dataSource = self as? FSCalendarDataSource
+//        calendar.delegate = self as! FSCalendarDelegate
+//        view.addSubview(calendar)
+//        self.calendar = calendar
+
+        getEvents()
         getCourses()
+        reloadData()
         
         tableView = UITableView(frame: .zero)
         tableView.backgroundColor = .white
@@ -49,6 +53,46 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         setupConstraints()
     }
     
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        JZWeekViewHelper.viewTransitionHandler(to: size, weekView: calendarWeekView)
+////    }
+//    func getEvents() {
+//        var event1 = "INFO 4320"
+//        calendarData = "INFO 4320",
+//        calendarData = [["Breakfast at Tiffany's",
+//                         "New York, 5th avenue"],
+//                        
+//                        ["Workout",
+//                         "Tufteparken"],
+//                        
+//                        ["Meeting with Alex",
+//                         "Home",
+//                         "Oslo, Tjuvholmen"],
+//                        
+//                        ["Beach Volleyball",
+//                         "Ipanema Beach",
+//                         "Rio De Janeiro"],
+//                        
+//                        ["WWDC",
+//                         "Moscone West Convention Center",
+//                         "747 Howard St"],
+//                        
+//                        ["Google I/O",
+//                         "Shoreline Amphitheatre",
+//                         "One Amphitheatre Parkway"],
+//                        
+//                        ["flight to Svalbard",
+//                         "Oslo Gardermoen"],
+//                        
+//                        ["Developing CalendarKit",
+//                         "Worldwide"],
+//                        
+//                        ["Software Development Lecture",
+//                         "Mikpoli MB310",
+//                         "Craig Federighi"],
+//                        ]
+//    }
+    
     // get courses from supposably JSON, now hard-coded
     func getCourses() {
         let teacher1 = Teacher(type: .instructor, name: "François Guimbretière", email: "francois@cornell.edu", location: "241 Gates Hall")
@@ -58,19 +102,20 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         courseList = [course1, course2]
     }
     
+//    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+//        calendar.snp.updateConstraints { (make) in
+//            make.height.equalTo(bounds.height)
+//            // Do other updates
+//        }
+//        self.view.layoutIfNeeded()
+//    }
+    
     func setupConstraints(){
-        calendarView.snp.makeConstraints{ make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(380)
-        }
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(400)
             make.leading.trailing.bottom.equalToSuperview()
 //            make.bottom.equalTo(self.view.snp.bottom).offset(-20)
             make.centerX.equalTo(self.view.snp.centerX)
-        }
-        titleLabel.snp.makeConstraints{make in
-            make.top.equalToSuperview().offset(200)
         }
     }
     
@@ -81,7 +126,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.configure(for: course)
         cell.index = indexPath.row
         cell.selectionStyle = .none
-        cell.delegate = self
+        cell.delegate = self as? DetailPressedDelegate
 //        cell.needsUpdateConstraints()
         return cell
         
@@ -95,37 +140,28 @@ class CalendarViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    // Return an array of EventDescriptors for particular date
+//    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
+//        var models = EventDescriptor(date)// Get events (models) from the storage / API
+//
+//        var events = [Event]()
+//
+//        for model in models {
+//            // Create new EventView
+//            let event = Event()
+//            // Specify StartDate and EndDate
+//            event.startDate = model.startDate
+//            event.endDate = model.endDate
+//            // Add info: event title, subtitle, location to the array of Strings
+//            var info = [model.title, model.location]
+//            info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
+//            // Set "text" value of event by formatting all the information needed for display
+//            event.text = info.reduce("", {$0 + $1 + "\n"})
+//            events.append(event)
+//        }
+//        return events
+//    }
+    
 }
 
-extension CalendarViewController: DetailPressedDelegate {
-    func buttonPressed(index: Int) {
-        let detailVC = DetailsViewController()
-        detailVC.course = courseList[index]
-        self.navigationController?.pushViewController(detailVC, animated: true)
-    }
-}
-
-extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        let calendarCell = cell as! CalendarCell
-    }
-    
-    
-    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
-        
-        let startDate = formatter.date(from: "2018 08 01")!
-        let endDate = formatter.date(from: formatter.string(from: Date()))!
-        
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
-        return parameters
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
-        cell.dateLabel.text = cellState.text
-        return cell
-    }
-}
