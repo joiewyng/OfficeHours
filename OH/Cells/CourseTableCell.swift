@@ -51,11 +51,13 @@ class CourseTableCell: UITableViewCell {
     
     func setupConstraints() {
         nameButton.snp.makeConstraints{ make in
-            make.top.equalTo(contentView.snp.top).offset(padding)
+//            make.top.equalTo(contentView.snp.top).offset(padding)
             make.leading.equalTo(contentView.snp.leading).offset(padding * 2)
+            make.centerY.equalToSuperview()
         }
         detailButton.snp.makeConstraints{make in
-            make.top.equalTo(contentView.snp.top).offset(padding * 2)
+//            make.top.equalTo(contentView.snp.top).offset(padding * 2)
+            make.centerY.equalToSuperview()
             make.trailing.equalTo(contentView.snp.trailing).offset(padding * (-2))
         }
     }

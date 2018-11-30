@@ -11,7 +11,7 @@ import SnapKit
 import CalendarKit
 import DateToolsSwift
 
-//class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
+//class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
 class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate {
     
     let formatter = DateFormatter()
@@ -56,7 +56,7 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //        self.calendar = calendar
 
         getCourses()
-        reloadData()
+//        reloadData()
         
         tableView = UITableView(frame: .zero)
         tableView.backgroundColor = .white
@@ -64,6 +64,8 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
         tableView.delegate = self
         tableView.register(CourseTableCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
+        view.bringSubviewToFront(tableView)
+        
 
         setupConstraints()
     }
@@ -178,3 +180,10 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     }
 }
 
+extension CalendarViewController: DetailPressedDelegate {
+    func buttonPressed(index: Int) {
+        let detailVC = DetailsViewController()
+        detailVC.course = courseList[index]
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+}

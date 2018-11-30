@@ -54,28 +54,28 @@ class VoteViewController: UIViewController {
         // Request View
         titleLabel = UILabel()
         titleLabel.text = "Request Office Hour"
-        titleLabel.font = UIFont.systemFont(ofSize: 30)
+        titleLabel.font = UIFont.systemFont(ofSize: 25)
         titleLabel.textColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         view.addSubview(titleLabel)
         
         courseLabel = UILabel()
         courseLabel.text = "Course"
-        courseLabel.font = UIFont.systemFont(ofSize: 25)
+        courseLabel.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(courseLabel)
         
         instructorLabel = UILabel()
         instructorLabel.text = "Intructor/TAs"
-        instructorLabel.font = UIFont.systemFont(ofSize: 25)
+        instructorLabel.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(instructorLabel)
         
         timeLocationLabel = UILabel()
         timeLocationLabel.text = "Time/Location"
-        timeLocationLabel.font = UIFont.systemFont(ofSize: 25)
+        timeLocationLabel.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(timeLocationLabel)
         
         proofLabel = UILabel()
         proofLabel.text = "Add Proof"
-        proofLabel.font = UIFont.systemFont(ofSize: 25)
+        proofLabel.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(proofLabel)
         
         titleTextField = UITextField()
@@ -121,11 +121,11 @@ class VoteViewController: UIViewController {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.view.snp.top).offset(150)
+            make.top.equalTo(segmentControl.snp.bottom).offset(40)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
         }
         courseLabel.snp.makeConstraints{make in
-            make.top.equalTo(self.view.snp.top).offset(190)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(40)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
         }
         instructorLabel.snp.makeConstraints{make in
