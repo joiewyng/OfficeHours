@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum TeacherType {
-    case instructor
-    case ta
+enum TeacherType: String, Codable {
+    case instructor = "instructor"
+    case ta = "ta"
 }
-struct Teacher {
+struct Teacher: Codable {
     var type: TeacherType
     var name: String
     var email: String

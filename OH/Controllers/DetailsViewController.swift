@@ -9,16 +9,8 @@
 import UIKit
 import SnapKit
 
-class DetailsViewController: UIViewController {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    }
+class DetailsViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate {
     
-
     var courseNameLabel: UILabel!
     var typeLabel1: UILabel!
     var typeLabel2: UILabel!
@@ -100,5 +92,12 @@ class DetailsViewController: UIViewController {
         }
 
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+    }
 }
