@@ -13,9 +13,9 @@
 		0A0EF96721ADA5150019C8BD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96621ADA5150019C8BD /* NetworkManager.swift */; };
 		0A0EF96A21AE8C3F0019C8BD /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96921AE8C3F0019C8BD /* Style.swift */; };
 		0A0EF96E21AF035F0019C8BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */; };
+		0A5C5D9021B1FE82009A79FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5C5D8F21B1FE82009A79FA /* Assets.xcassets */; };
 		36E8AC7821A1F09200271556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7721A1F09200271556 /* AppDelegate.swift */; };
 		36E8AC7A21A1F09300271556 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7921A1F09300271556 /* LoginViewController.swift */; };
-		36E8AC7F21A1F09900271556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E8AC7E21A1F09900271556 /* Assets.xcassets */; };
 		36E8AC8221A1F09900271556 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */; };
 		36E8AC8D21A1F09900271556 /* OHTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC8C21A1F09900271556 /* OHTests.swift */; };
 		36E8AC9821A1F09900271556 /* OHUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC9721A1F09900271556 /* OHUITests.swift */; };
@@ -55,12 +55,12 @@
 		0A0EF96621ADA5150019C8BD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0A0EF96921AE8C3F0019C8BD /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0A5C5D8F21B1FE82009A79FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A99519721AFAA9B0071B6E4 /* FSCalendar-bridging-Header */ = {isa = PBXFileReference; lastKnownFileType = text; path = "FSCalendar-bridging-Header"; sourceTree = "<group>"; };
 		1A9041214B4318D6CD896603 /* Pods-OH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OH.release.xcconfig"; path = "Pods/Target Support Files/Pods-OH/Pods-OH.release.xcconfig"; sourceTree = "<group>"; };
 		36E8AC7421A1F09200271556 /* OH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E8AC7721A1F09200271556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36E8AC7921A1F09300271556 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		36E8AC7E21A1F09900271556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36E8AC8121A1F09900271556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36E8AC8321A1F09900271556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E8AC8821A1F09900271556 /* OHTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OHTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,13 +183,13 @@
 		36E8AC7621A1F09200271556 /* OH */ = {
 			isa = PBXGroup;
 			children = (
+				0A5C5D8F21B1FE82009A79FA /* Assets.xcassets */,
 				0A99519721AFAA9B0071B6E4 /* FSCalendar-bridging-Header */,
 				0A0EF96121AD93F90019C8BD /* Models */,
 				0A0EF95C21AD8E460019C8BD /* Controllers */,
 				0A0EF96821AE7B110019C8BD /* Cells */,
 				36E8AC7721A1F09200271556 /* AppDelegate.swift */,
 				0A0EF96921AE8C3F0019C8BD /* Style.swift */,
-				36E8AC7E21A1F09900271556 /* Assets.xcassets */,
 				36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */,
 				0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */,
 				36E8AC8321A1F09900271556 /* Info.plist */,
@@ -337,7 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E8AC8221A1F09900271556 /* LaunchScreen.storyboard in Resources */,
-				36E8AC7F21A1F09900271556 /* Assets.xcassets in Resources */,
+				0A5C5D9021B1FE82009A79FA /* Assets.xcassets in Resources */,
 				0A0EF96E21AF035F0019C8BD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

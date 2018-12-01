@@ -43,7 +43,7 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Office Hour"
-        
+        view.tintColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 //        let calendar = FSCalendar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.size.height + 40, width: UIScreen.main.bounds.width, height: 300))
 //        calendar.appearance.selectionColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
 //        calendar.appearance.todayColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)

@@ -30,20 +30,20 @@ class CourseTableCell: UITableViewCell {
         
         nameButton = UIButton()
         nameButton.setTitleColor(UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0), for: .normal)  // hot pink
-        nameButton.setTitleColor(.white, for: .selected)
+        nameButton.setTitleColor(.white, for: .selected)  // hot pink
         nameButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)  // light grey
         nameButton.layer.cornerRadius = 8.0
         nameButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         nameButton.contentEdgeInsets = UIEdgeInsets(top: padding*2, left: padding*4, bottom: padding*2, right: padding*4)
+        contentView.addSubview(nameButton)
 
+        
 //        nameButton.tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         
         detailButton = UIButton()
         detailButton.setTitle("View detail > ", for: .normal)
         detailButton.setTitleColor(.black, for: .normal)
         detailButton.addTarget(self, action: #selector(viewDetail), for: .touchUpInside)
-        
-        contentView.addSubview(nameButton)
         contentView.addSubview(detailButton)
         
         setupConstraints()
@@ -80,10 +80,15 @@ class CourseTableCell: UITableViewCell {
     }
     
     @objc func pressed() {
-        if (nameButton.isSelected) {
+        print(nameButton.isSelected)
+        if (nameButton.backgroundColor == UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)) {
             nameButton.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
+//            nameButton.setTitleColor(.white, for: .normal)
+            nameButton.isSelected = true
+
         } else {
             nameButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+            nameButton.isSelected = false
         }
     }
     
