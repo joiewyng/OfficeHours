@@ -73,10 +73,10 @@ class VoteViewController: UIViewController {
         timeLocationLabel.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(timeLocationLabel)
         
-        proofLabel = UILabel()
-        proofLabel.text = "Add Proof"
-        proofLabel.font = UIFont.systemFont(ofSize: 20)
-        view.addSubview(proofLabel)
+//        proofLabel = UILabel()
+//        proofLabel.text = "Add Proof"
+//        proofLabel.font = UIFont.systemFont(ofSize: 20)
+//        view.addSubview(proofLabel)
         
         titleTextField = UITextField()
         titleTextField.bottomBorder()
@@ -105,7 +105,7 @@ class VoteViewController: UIViewController {
         courseLabel.isHidden = true
         instructorLabel.isHidden = true
         timeLocationLabel.isHidden = true
-        proofLabel.isHidden = true
+//        proofLabel.isHidden = true
         titleTextField.isHidden = true
         instructorTextField.isHidden = true
         timeLocationTextField.isHidden = true
@@ -136,10 +136,10 @@ class VoteViewController: UIViewController {
             make.top.equalTo(instructorLabel.snp_bottomMargin).offset(100)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
         }
-        proofLabel.snp.makeConstraints{make in
-            make.top.equalTo(timeLocationLabel.snp_bottomMargin).offset(100)
-            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
-        }
+//        proofLabel.snp.makeConstraints{make in
+//            make.top.equalTo(timeLocationLabel.snp_bottomMargin).offset(100)
+//            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
+//        }
         titleTextField.snp.makeConstraints{make in
             make.top.equalTo(courseLabel.snp_bottomMargin).offset(30)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
@@ -159,7 +159,7 @@ class VoteViewController: UIViewController {
             make.width.equalTo(300)
         }
         submitButton.snp.makeConstraints{make in
-            make.bottom.equalTo(self.view.snp.bottom).offset(-100)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-150)
             make.centerX.equalTo(self.view.snp.centerX)
             make.height.equalTo(50)
             make.width.equalTo(200)
@@ -174,7 +174,7 @@ class VoteViewController: UIViewController {
             courseLabel.isHidden = true
             instructorLabel.isHidden = true
             timeLocationLabel.isHidden = true
-            proofLabel.isHidden = true
+//            proofLabel.isHidden = true
             titleTextField.isHidden = true
             instructorTextField.isHidden = true
             timeLocationTextField.isHidden = true
@@ -184,7 +184,7 @@ class VoteViewController: UIViewController {
             courseLabel.isHidden = false
             instructorLabel.isHidden = false
             timeLocationLabel.isHidden = false
-            proofLabel.isHidden = false
+//            proofLabel.isHidden = false
             titleTextField.isHidden = false
             instructorTextField.isHidden = false
             timeLocationTextField.isHidden = false

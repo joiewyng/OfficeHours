@@ -40,6 +40,7 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
                         "Statler Hall"],
                         ]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Office Hour"
@@ -187,3 +188,13 @@ extension CalendarViewController: DetailPressedDelegate {
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
+
+//var cdstyle = CalendarStyle(
+//cdstyle.copy()
+//class cdStyle: CalendarStyle {
+//    public class DaySelectorStyle: NSCopying {
+//
+//    public var todayInactiveTextColor = UIColor.red
+//    public var todayActiveBackgroundColor = UIColor.red
+//    
+//}

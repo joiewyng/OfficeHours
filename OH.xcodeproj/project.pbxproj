@@ -14,6 +14,7 @@
 		0A0EF96A21AE8C3F0019C8BD /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96921AE8C3F0019C8BD /* Style.swift */; };
 		0A0EF96E21AF035F0019C8BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */; };
 		0A5C5D9021B1FE82009A79FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5C5D8F21B1FE82009A79FA /* Assets.xcassets */; };
+		0A5C5D9221B21FE6009A79FA /* OfficeHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C5D9121B21FE6009A79FA /* OfficeHour.swift */; };
 		36E8AC7821A1F09200271556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7721A1F09200271556 /* AppDelegate.swift */; };
 		36E8AC7A21A1F09300271556 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8AC7921A1F09300271556 /* LoginViewController.swift */; };
 		36E8AC8221A1F09900271556 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */; };
@@ -56,6 +57,7 @@
 		0A0EF96921AE8C3F0019C8BD /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A5C5D8F21B1FE82009A79FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A5C5D9121B21FE6009A79FA /* OfficeHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OfficeHour.swift; path = OH/Models/OfficeHour.swift; sourceTree = SOURCE_ROOT; };
 		0A99519721AFAA9B0071B6E4 /* FSCalendar-bridging-Header */ = {isa = PBXFileReference; lastKnownFileType = text; path = "FSCalendar-bridging-Header"; sourceTree = "<group>"; };
 		1A9041214B4318D6CD896603 /* Pods-OH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OH.release.xcconfig"; path = "Pods/Target Support Files/Pods-OH/Pods-OH.release.xcconfig"; sourceTree = "<group>"; };
 		36E8AC7421A1F09200271556 /* OH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OH.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 		0A0EF96121AD93F90019C8BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0A5C5D9121B21FE6009A79FA /* OfficeHour.swift */,
 				36E8ACA921A337A700271556 /* Teacher.swift */,
 				36E8ACAB21A338E800271556 /* Course.swift */,
 			);
@@ -500,6 +503,7 @@
 				0A0EF96A21AE8C3F0019C8BD /* Style.swift in Sources */,
 				36E8AC7A21A1F09300271556 /* LoginViewController.swift in Sources */,
 				0A0EF96521AD9CD40019C8BD /* RequestViewController.swift in Sources */,
+				0A5C5D9221B21FE6009A79FA /* OfficeHour.swift in Sources */,
 				36E8ACAC21A338E800271556 /* Course.swift in Sources */,
 				0A0EF96721ADA5150019C8BD /* NetworkManager.swift in Sources */,
 				36E8ACB221ADB4DE00271556 /* CourseTableCell.swift in Sources */,
