@@ -8,13 +8,13 @@
 
 import UIKit
 
-class VoteViewController: UIViewController {
+class VoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var segmentControl: UISegmentedControl!
     
     var titleLabel1: UILabel!
     var voteView: UICollectionView!
-    var voteArray: [OfficeHour]!
+    var voteArray: [ProfOH]!
     
     let voteCellReuseIdentifier = "voteCellReuseIdentifier"
     
@@ -40,7 +40,12 @@ class VoteViewController: UIViewController {
         self.title = "Vote/Request"
         
         
-        voteArray = [...some office hours...]
+        let instructor = Instructor(name: "Francois Guimbretiere", netid: "fvg3")
+        
+        let voteEntry1 = ProfOH(instructor: instructor, day: "Monday", startTime: "15:00", endTime: "18:00", location: "Gates 201")
+        let voteEntry2 = ProfOH(instructor: instructor, day: "Thursday", startTime: "13:00", endTime: "14:00", location: "Gates 201")
+        
+        voteArray = [voteEntry1, voteEntry2]
         
         segmentControl = UISegmentedControl(items: ["Vote", "Request"])
         segmentControl.tintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
@@ -56,16 +61,17 @@ class VoteViewController: UIViewController {
         titleLabel1.textColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         view.addSubview(titleLabel1)
         
-        voteView = UICollectionView()
+        
         let voteLayout = UICollectionViewFlowLayout()
         voteLayout.scrollDirection = .vertical
-        voteLayout.minimumInteritemSpacing = 8
-        voteLayout.minimumLineSpacing = 8
+        print(voteLayout.itemSize)
+        print(voteLayout.estimatedItemSize)
+//        voteLayout.minimumInteritemSpacing = 8
+//        voteLayout.minimumLineSpacing = 8
         voteView = UICollectionView(frame: .zero, collectionViewLayout: voteLayout)
         
-        voteView.backgroundColor = .white
-        voteView.dataSource = self as! UICollectionViewDataSource
-        voteView.delegate = self as! UICollectionViewDelegate
+        voteView.dataSource = self
+        voteView.delegate = self
         voteView.register(VoteCollectionViewCell.self, forCellWithReuseIdentifier: voteCellReuseIdentifier)
         voteView!.contentInset = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
         view.addSubview(voteView)
@@ -149,7 +155,7 @@ class VoteViewController: UIViewController {
         voteView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel1.snp.bottom).offset(40)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(10)
-            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(10)
+            make.rightMargin.equalTo(self.view.snp_rightMargin).offset(-10)
             make.bottomMargin.equalTo(self.view.snp_bottomMargin).offset(-10)
         }
         
@@ -206,7 +212,6 @@ class VoteViewController: UIViewController {
             let voteEntry = voteArray[indexPath.item]
             cell.configure(for: voteEntry)
             cell.setNeedsUpdateConstraints()
-            
             return cell
        
     }
@@ -217,12 +222,13 @@ class VoteViewController: UIViewController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // We want || padding IMAGE padding IMAGE padding IMAGE padding ||
-        
-            let length = (voteView.frame.width - 8 * 2)
-            return CGSize(width: length, height: length)
+
+            let length = voteView.bounds.size.width
+            return CGSize(width: length, height: 300)
 
     }
-    
+
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Run some code upon tapping a cell
         // For example, if we wanted to remove the cell upon tap:
@@ -236,6 +242,7 @@ class VoteViewController: UIViewController {
         switch segmentControl.selectedSegmentIndex {
         case 0:  // vote view
             titleLabel1.isHidden = false
+            voteView.isHidden = false
             titleLabel.isHidden = true
             courseLabel.isHidden = true
             instructorLabel.isHidden = true
@@ -247,6 +254,7 @@ class VoteViewController: UIViewController {
             submitButton.isHidden = true
         case 1: // request view
             titleLabel1.isHidden = true
+            voteView.isHidden = true
             titleLabel.isHidden = false
             courseLabel.isHidden = false
             instructorLabel.isHidden = false

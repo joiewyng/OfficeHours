@@ -16,7 +16,7 @@ struct ProfOH: Codable {
 //    var name: String
     var location: String
     
-    init(instructor: Instuctor, day: String, startTime: String, endTime: String, location: String) {
+    init(instructor: Instructor, day: String, startTime: String, endTime: String, location: String) {
         self.instructor = instructor
         self.day = day
         self.startTime = startTime
