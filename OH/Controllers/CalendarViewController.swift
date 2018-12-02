@@ -12,11 +12,10 @@ import CalendarKit
 import DateToolsSwift
 
 //class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
-class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate {
+class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate  {
     
     let formatter = DateFormatter()
-    private weak var calendar: FSCalendar!
-    
+//    private weak var calendar: FSCalendar!
     var tableView: UITableView!
     
     var courseList: [Course]!
@@ -44,7 +43,14 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Office Hour"
+        courseList = []
         view.tintColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        let addButton = UIButton.init(type: .custom)
+        addButton.setImage(UIImage.init(named: "add.png"), for: .normal)
+        addButton.addTarget(self, action:#selector(pushModal), for:.touchUpInside)
+        addButton.frame = CGRect.init(x: 0, y: 0, width: 24, height: 24)
+        let rightBarButtonItem = UIBarButtonItem(customView: addButton)
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
 //        let calendar = FSCalendar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.size.height + 40, width: UIScreen.main.bounds.width, height: 300))
 //        calendar.appearance.selectionColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
 //        calendar.appearance.todayColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
@@ -55,9 +61,11 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //        calendar.delegate = self as! FSCalendarDelegate
 //        view.addSubview(calendar)
 //        self.calendar = calendar
+        
 
-        getCourses()
-//        reloadData()
+//        getCourses()
+        courseList = [Course(titleLong: "Introduction to Rapid Prototyping and Physical Computing", subject: "INFO", catalogNbr: "4320", instructors: [Instructor(name: "Francois Guimbretiere", netid: "fvg3")])]
+        reloadData()
         
         tableView = UITableView(frame: .zero)
         tableView.backgroundColor = .white
@@ -66,7 +74,6 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
         tableView.register(CourseTableCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         view.bringSubviewToFront(tableView)
-        
 
         setupConstraints()
     }
@@ -75,15 +82,6 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //        JZWeekViewHelper.viewTransitionHandler(to: size, weekView: calendarWeekView)
 ////    }
     
-    // get courses from supposably JSON, now hard-coded
-    func getCourses() {
-        let teacher1 = Teacher(type: .instructor, name: "François Guimbretière", email: "francois@cornell.edu", location: "241 Gates Hall")
-        let teacher2 = Teacher(type: .instructor, name: "D. Gries", email: "dgries@cornell.edu", location: "185-Aud Statler Hall")
-        let course1 = Course(name: "Rapid Prototyping and Physical Computing", abbrv: "INFO4320", instructors:[teacher1])
-        let course2 = Course(name: "Object-Oriented Programming and Data Structures", abbrv: "CS2110", instructors: [teacher2])
-        courseList = [course1, course2]
-    }
-    
 //    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
 //        calendar.snp.updateConstraints { (make) in
 //            make.height.equalTo(bounds.height)
@@ -91,7 +89,10 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //        }
 //        self.view.layoutIfNeeded()
 //    }
-    
+    @objc func pushModal(_ target: UIButton) {
+        let addModalVC = AddClassModalViewController()
+        navigationController?.present(addModalVC, animated: true)
+    }
     func setupConstraints(){
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(400)
@@ -179,6 +180,16 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
         
         return events
     }
+    
+    // get courses from supposably JSON, now hard-coded
+//    func getCourses() {
+//        let teacher1 = Teacher(type: .instructor, name: "François Guimbretière", email: "francois@cornell.edu", location: "241 Gates Hall")
+//        let teacher2 = Teacher(type: .instructor, name: "D. Gries", email: "dgries@cornell.edu", location: "185-Aud Statler Hall")
+//        let course1 = Course(name: "Rapid Prototyping and Physical Computing", abbrv: "INFO4320", instructors:[teacher1])
+//        let course2 = Course(name: "Object-Oriented Programming and Data Structures", abbrv: "CS2110", instructors: [teacher2])
+//        courseList = [course1, course2]
+//    }
+    
 }
 
 extension CalendarViewController: DetailPressedDelegate {
@@ -189,12 +200,3 @@ extension CalendarViewController: DetailPressedDelegate {
     }
 }
 
-//var cdstyle = CalendarStyle(
-//cdstyle.copy()
-//class cdStyle: CalendarStyle {
-//    public class DaySelectorStyle: NSCopying {
-//
-//    public var todayInactiveTextColor = UIColor.red
-//    public var todayActiveBackgroundColor = UIColor.red
-//    
-//}

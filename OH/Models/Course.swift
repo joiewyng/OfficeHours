@@ -8,14 +8,47 @@
 
 import Foundation
 
+struct CourseSearchResponse : Codable {
+    var data: CourseDataResponse
+}
+
+struct CourseDataResponse: Codable {
+    var classes: [Course]
+}
+
 struct Course: Codable {
-    var name: String
-    var abbrv: String
-    var instructors: [Teacher]
+    var titleLong: String  // course complete name
+    var subject: String    // INFO, CS, ...
+    var catalogNbr: String  // 2110, ...
+    var enrollGroups: [EnrollGroupsData]
     
-    init(name: String, abbrv: String, instructors: [Teacher]) {
-        self.name = name
-        self.abbrv = abbrv
+    init(titleLong: String, subject: String, catalogNbr: String, instructors: [Instructor]) {
+        self.titleLong = titleLong
+        self.subject = subject
+        self.catalogNbr = catalogNbr
+        self.enrollGroups = [EnrollGroupsData(classSections: [Section(meetings: [Meeting(instructors: instructors)])])]
+    }
+}
+
+struct EnrollGroupsData: Codable {
+    var classSections: [Section]
+    
+    init(classSections: [Section]) {
+        self.classSections = classSections
+    }
+}
+
+struct Section: Codable {
+    var meetings: [Meeting]
+    
+    init(meetings: [Meeting]) {
+        self.meetings = meetings
+    }
+}
+struct Meeting: Codable {
+    var instructors: [Instructor]
+    
+    init(instructors: [Instructor]) {
         self.instructors = instructors
     }
 }

@@ -20,8 +20,8 @@ class DetailsViewController: UIViewController,  UITableViewDataSource, UITableVi
     var tableView: UITableView!
     
     var course: Course!
-    var professors: [Teacher]!
-    var tas: [Teacher]!
+    var professors: [Instructor]!
+    var tas: [Ta]!
     let sections = ["Instructor", "TA"]
     
     let padding: CGFloat = 8
@@ -30,17 +30,19 @@ class DetailsViewController: UIViewController,  UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        self.title = course.abbrv
+        self.title = course.titleLong
         
         courseNameLabel = UILabel()
-        courseNameLabel.text = "\(course.abbrv) \(course.name)"
+        courseNameLabel.text = "\(course.subject) \(course.catalogNbr) \(course.titleLong)"
         courseNameLabel.textColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         courseNameLabel.font = UIFont.systemFont(ofSize: 20, weight: .black)
         courseNameLabel.numberOfLines = 2
         view.addSubview(courseNameLabel)
         
-        professors = course.instructors.filter{ $0.type == .instructor}
-        tas = course.instructors.filter{ $0.type == .ta}
+        professors = course.enrollGroups[0].classSections[0].meetings[0].instructors
+        
+        
+        tas = []
         
         tableView = UITableView(frame: .zero)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCell")
@@ -94,7 +96,8 @@ class DetailsViewController: UIViewController,  UITableViewDataSource, UITableVi
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
-        var instructor = Teacher(type: .instructor, name: "", email: "", location: "")
+        var instructor: Instructor!
+        var ta: Ta!
         
         nameLabel = UILabel()
         nameLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
@@ -107,16 +110,17 @@ class DetailsViewController: UIViewController,  UITableViewDataSource, UITableVi
         
         if indexPath.section == 0 {
             instructor = professors[indexPath.row]
+            nameLabel.text = "\(instructor.firstName) \(instructor.lastName)"
+            emailLabel.text = "\(instructor.netid)@cornell.edu"
+//            locationLabel.text = instructor.location
         } else if indexPath.section == 1 {
-            instructor = tas[indexPath.row]
+            ta = tas[indexPath.row]
         }
 //        cell.textLabel?.text = "\(instructor.name)"
-        nameLabel.text = instructor.name
-        emailLabel.text = instructor.email
-        locationLabel.text = instructor.location
+        
         cell.addSubview(nameLabel)
         cell.addSubview(emailLabel)
-        cell.addSubview(locationLabel)
+//        cell.addSubview(locationLabel)
         setupCellConstraints()
         return cell
     }
@@ -130,10 +134,10 @@ class DetailsViewController: UIViewController,  UITableViewDataSource, UITableVi
             make.top.equalTo(nameLabel.snp.bottom).offset(padding*2)
             make.leading.equalToSuperview().offset(padding*3)
         }
-        locationLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(padding*2)
-            make.leading.equalToSuperview().offset(padding*3)
-        }
+//        locationLabel.snp.makeConstraints { make in
+//            make.top.equalTo(emailLabel.snp.bottom).offset(padding*2)
+//            make.leading.equalToSuperview().offset(padding*3)
+//        }
     }
 }
 

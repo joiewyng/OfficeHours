@@ -8,21 +8,32 @@
 
 import Foundation
 
-enum TeacherType: String, Codable {
-    case instructor = "instructor"
-    case ta = "ta"
+//enum TeacherType: String, Codable {
+//    case instructor = "instructor"
+//    case ta = "ta"
+//}
+struct Instructor: Codable {
+    var firstName: String
+    var lastName: String
+    var netid: String
+//    var location: String
+    
+    init(name: String, netid: String) {
+        
+        self.firstName = name.components(separatedBy: " ")[0]
+        self.lastName = name.components(separatedBy: " ")[1]
+        self.netid = netid
+//        self.location = location
+    }
 }
-struct Teacher: Codable {
-    var type: TeacherType
-    var name: String
+
+struct Ta: Codable {
+    var subject: String
+    var catalogNbr: String
+    var firstName: String
+    var lastName: String
+    var netid: String
     var email: String
     var location: String
-    
-    init(type: TeacherType, name: String, email: String, location: String) {
-        self.name = name
-        self.type = type
-        self.email = email
-        self.location = location
-    }
 }
 

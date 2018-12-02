@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0EF96021AD91D80019C8BD /* AddClassModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF95F21AD91D80019C8BD /* AddClassModalViewController.swift */; };
+		0A05D03A21B37B6500742AF8 /* AddClassModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05D03921B37B6500742AF8 /* AddClassModalViewController.swift */; };
 		0A0EF96321AD9BA40019C8BD /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96221AD9BA40019C8BD /* VoteViewController.swift */; };
 		0A0EF96521AD9CD40019C8BD /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96421AD9CD40019C8BD /* RequestViewController.swift */; };
 		0A0EF96721ADA5150019C8BD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0EF96621ADA5150019C8BD /* NetworkManager.swift */; };
@@ -50,7 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A0EF95F21AD91D80019C8BD /* AddClassModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClassModalViewController.swift; sourceTree = "<group>"; };
+		0A05D03921B37B6500742AF8 /* AddClassModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClassModalViewController.swift; sourceTree = "<group>"; };
 		0A0EF96221AD9BA40019C8BD /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		0A0EF96421AD9CD40019C8BD /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		0A0EF96621ADA5150019C8BD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -125,6 +125,7 @@
 				36E8ACAD21A33F6E00271556 /* OHTabBarController.swift */,
 				0A0EF96221AD9BA40019C8BD /* VoteViewController.swift */,
 				0A0EF96421AD9CD40019C8BD /* RequestViewController.swift */,
+				0A05D03921B37B6500742AF8 /* AddClassModalViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,17 +188,16 @@
 			isa = PBXGroup;
 			children = (
 				0A5C5D8F21B1FE82009A79FA /* Assets.xcassets */,
-				0A99519721AFAA9B0071B6E4 /* FSCalendar-bridging-Header */,
 				0A0EF96121AD93F90019C8BD /* Models */,
 				0A0EF95C21AD8E460019C8BD /* Controllers */,
 				0A0EF96821AE7B110019C8BD /* Cells */,
 				36E8AC7721A1F09200271556 /* AppDelegate.swift */,
+				0A0EF96621ADA5150019C8BD /* NetworkManager.swift */,
 				0A0EF96921AE8C3F0019C8BD /* Style.swift */,
 				36E8AC8021A1F09900271556 /* LaunchScreen.storyboard */,
 				0A0EF96D21AF035F0019C8BD /* GoogleService-Info.plist */,
 				36E8AC8321A1F09900271556 /* Info.plist */,
-				0A0EF95F21AD91D80019C8BD /* AddClassModalViewController.swift */,
-				0A0EF96621ADA5150019C8BD /* NetworkManager.swift */,
+				0A99519721AFAA9B0071B6E4 /* FSCalendar-bridging-Header */,
 			);
 			path = OH;
 			sourceTree = "<group>";
@@ -509,10 +509,10 @@
 				36E8ACB221ADB4DE00271556 /* CourseTableCell.swift in Sources */,
 				36E8AC7821A1F09200271556 /* AppDelegate.swift in Sources */,
 				36E8ACAE21A33F6E00271556 /* OHTabBarController.swift in Sources */,
-				0A0EF96021AD91D80019C8BD /* AddClassModalViewController.swift in Sources */,
 				36E8ACB621ADFB8400271556 /* VoteCollectionViewCell.swift in Sources */,
 				0A0EF96321AD9BA40019C8BD /* VoteViewController.swift in Sources */,
 				36E8ACB021A3449000271556 /* CalendarViewController.swift in Sources */,
+				0A05D03A21B37B6500742AF8 /* AddClassModalViewController.swift in Sources */,
 				36E8ACA821A333E600271556 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

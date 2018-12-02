@@ -76,7 +76,7 @@ class CourseTableCell: UITableViewCell {
 //    }
     
     func configure(for course: Course) {
-        nameButton.setTitle(course.abbrv, for: .normal)
+        nameButton.setTitle("\(course.subject) \(course.catalogNbr)", for: .normal)
     }
     
     @objc func pressed() {

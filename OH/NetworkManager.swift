@@ -5,45 +5,37 @@
 //  Created by Li Chai on 11/27/18.
 //  Copyright © 2018 Joie Ng. All rights reserved.
 //
+// https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA18&subject=INFO(required)&catalogNbr=4320
 
 import Foundation
 import Alamofire
 import SwiftyJSON
 
 class NetworkManager{
-    //    private static let coursesURL = "???"
-    //
-    //    static func getCourse(fromInput input: String, _ didGetCourses: @escaping ([Course]) -> Void) {
-    //        // TODO: Fill in this function. This function should make a network request
-    //        // to the Recipe Puppy API given a title and then call the
-    //        // didGetRecipes closure after you receive a response and decode it.
-    //        let parameters: [String: Any] = ["...": input] // change "..." ???
-    //
-    //        Alamofire.request(coursesURL, method: .get, parameters: parameters).validate().responseData { (response) in
-    //            //
-    //            switch response.result{
-    //            case .success(let data):
-    //                //print(data)
-    //                let decoder = JSONDecoder()
-    //                if let courseData = try? decoder.decode(CourseSearchResponse.self, from: data){
-    //
-    //                    didGetCourses(courseData.results)
-    //                    // print(recipeData.results)
-    //
-    //                } else {
-    //                    print("Invalid Response Data")
-    //
-    //                }
-    //
-    //            case .failure(let error):
-    //                print(error.localizedDescription)
-    //
-    //
-    //            }
-    //        }
-    //
-    //
-    //}
+    
+    private static let rosterURL = "https://classes.cornell.edu/api/2.0/search/classes.json?"
+    
+    static func getCourseBasicInfo(searchText: String, didGetCourse: @escaping([Course]) -> Void) {
+        let parameters: [String: Any] = ["roster": "FA18", "subject": searchText.components(separatedBy: " ")[0], "q": searchText.components(separatedBy: " ")[1]]
+        Alamofire.request(rosterURL,
+                          method: .get,
+                          parameters: parameters)
+            .validate()
+            .responseData { response in
+                switch response.result{
+                case .success(let data):
+                    let jsonDecoder = JSONDecoder()
+                    if let courseResponse = try? jsonDecoder.decode(CourseSearchResponse.self, from: data) {
+                            didGetCourse(courseResponse.data.classes)
+                    } else {
+                        print("invalid response data")
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    print(response.request?.url)
+                }
+        }
+    }
 }
 
 
