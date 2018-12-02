@@ -6,22 +6,41 @@
 //  Copyright © 2018 Joie Ng. All rights reserved.
 //
 
-//import Foundation
-//
-//struct Event: Codable {
-//    var teacher: Teacher
-//    var date: Date
-//    var
-//    var type: TeacherType
+import Foundation
+
+struct ProfOH: Codable {
+    var instructor: Instructor
+    var day: String
+    var startTime: String
+    var endTime: String
 //    var name: String
-//    var location: String
-//    
-//    init(type: TeacherType, name: String, email: String, location: String) {
+    var location: String
+    
+    init(instructor: Instuctor, day: String, startTime: String, endTime: String, location: String) {
+        self.instructor = instructor
+        self.day = day
+        self.startTime = startTime
+        self.endTime = endTime
 //        self.name = name
-//        self.type = type
-//        self.email = email
-//        self.location = location
-//    }
-//}
+        self.location = location
+    }
+}
+struct TAOH: Codable {
+    var instructor: Instructor
+    var day: String
+    var startTime: String
+    var endTime: String
+    var name: String
+    var location: String
+    
+    init(instructor: Instructor, day: String, startTime: String, endTime: String, name: String, location: String) {
+        self.instructor = instructor
+        self.day = day
+        self.startTime = startTime
+        self.endTime = endTime
+        self.name = name
+        self.location = location
+    }
+}
 
 
