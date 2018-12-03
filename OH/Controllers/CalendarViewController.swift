@@ -144,97 +144,89 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     }
     
     // Return an array of EventDescriptors for particular date
-    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-//        var models = EventDescriptor(date)// Get events (models) from the storage / API
-        var models = [OfficeHour]()
-        for course in courseList {
-
-            NetworkManager.getCourseOfficeHours(searchText: course.subject+" "+course.catalogNbr, didGetOfficeHours: { ([OfficeHour]) in
-                model += officeHour
-            })
-            var events = [Event]()
-            for model in models {
-                // Create new EventView
-                let event = Event()
-                // Specify StartDate and EndDate
-                let week = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
-                for i in 0...6 {
-                    var bool = model.days[i]
-                    if bool{
-                        var day = week[i]
-                        if (day == "monday"){
-                            event.startDate = Date().
-                                .isToday().previous(.monday)
-            
-                        }
-                        if (day == "tuesday"){
-                            
-                        }
-                    }
-                    if bool {
-                        var day = week[i]
-                        
-                        event.startDate = Date.isToday().previous(.sunday)
-                        event.endDate = model.end_time
-                    }
-                }
-
-                // Add info: event title, subtitle, location to the array of Strings
-                var info = [course.subject+course.catalogNbr, model.location]
-                info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
-                // Set "text" value of event by formatting all the information needed for display
-                event.text = info.reduce("", {$0 + $1 + "\n"})
-                events.append(event)
-            }
-        }
-        calendarData = models
-
-
-        return events
-    }
-    func getDayOfWeek(_ today:String) -> Int? {
-        let formatter  = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        guard let todayDate = formatter.date(from: today) else { return nil }
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekDay = myCalendar.component(.weekday, from: todayDate)
-        return weekDay
-    }
 //    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-//        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
-//        var events = [Event]()
-//        var colors = [UIColor.blue,
-//                      UIColor.yellow,
-//                      UIColor.green,
-//                      UIColor.red]
+////        var models = EventDescriptor(date)// Get events (models) from the storage / API
+////        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
+//        var models = [OfficeHour]()
+//        for course in courseList {
 //
-//        for i in 0...4 {
-//            let event = Event()
-//            let duration = Int(arc4random_uniform(160) + 60)
-//            let datePeriod = TimePeriod(beginning: date,
-//                                        chunk: TimeChunk.dateComponents(minutes: duration))
+//            NetworkManager.getCourseOfficeHours(searchText: course.subject+" "+course.catalogNbr, didGetOfficeHours: { ([OfficeHour]) in
+//                model += officeHour
+//            })
+//            var events = [Event]()
+//            for model in models {
+//                // Create new EventView
+//                let event = Event()
+//                // Specify StartDate and EndDate
+//                let week = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+//                for i in 0...6 {
+//                    var bool = model.days[i]
+//                    if bool{
+//                        var day = week[i]
+//                        if (day == "monday") {
+//                            event.startDate = Date(dateString: "20181203", format: "YYYY.MM.dd")
+//                            event.endDate = Date(dateString: "20181203", format: "YYYY.MM.dd")
 //
-//            event.startDate = datePeriod.beginning!
-//            event.endDate = datePeriod.end!
+//                            // Add info: event title, subtitle, location to the array of Strings
+//                            var info = [course.subject+course.catalogNbr, model.location]
+//                            info.append(TimePeriod.
+//                                .beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
 //
-//            var info = calendarData[Int(arc4random_uniform(UInt32(calendarData.count)))]
+//                            info.append("\(TimePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
+//                            // Set "text" value of event by formatting all the information needed for display
+//                            event.text = info.reduce("", {$0 + $1 + "\n"})
+//                            events.append(event)
+//                        }
+//                        if (day == "tuesday"){
 //
-//            let timezone = TimeZone.ReferenceType.default
-//            info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
-//            info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
-//            event.text = info.reduce("", {$0 + $1 + "\n"})
-//            event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
-//            event.isAllDay = Int(arc4random_uniform(2)) % 2 == 0
+//                        }
+//                    }
+//                }
 //
-//            events.append(event)
 //
-//            let nextOffset = Int(arc4random_uniform(250) + 40)
-//            date = date.add(TimeChunk.dateComponents(minutes: nextOffset))
-//            event.userInfo = String(i)
+//            }
 //        }
+//        calendarData = models
+//
 //
 //        return events
 //    }
+
+    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
+        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
+        var events = [Event]()
+        var colors = [UIColor.blue,
+                      UIColor.yellow,
+                      UIColor.green,
+                      UIColor.red]
+
+        for i in 0...4 {
+            let event = Event()
+            let duration = Int(arc4random_uniform(160) + 60)
+            let datePeriod = TimePeriod(beginning: date,
+                                        chunk: TimeChunk.dateComponents(minutes: duration))
+
+            event.startDate = datePeriod.beginning!
+            event.endDate = datePeriod.end!
+
+            var info = calendarData[Int(arc4random_uniform(UInt32(calendarData.count)))]
+
+            let timezone = TimeZone.ReferenceType.default
+            info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
+            info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
+            event.text = info.reduce("", {$0 + $1 + "\n"})
+            event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
+            event.isAllDay = Int(arc4random_uniform(2)) % 2 == 0
+
+            events.append(event)
+
+            let nextOffset = Int(arc4random_uniform(250) + 40)
+            date = date.add(TimeChunk.dateComponents(minutes: nextOffset))
+            event.userInfo = String(i)
+        }
+
+        return events
+    }
     
     // get courses from supposably JSON, now hard-coded
 //    func getCourses() {
