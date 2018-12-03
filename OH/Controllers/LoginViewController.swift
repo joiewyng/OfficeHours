@@ -39,7 +39,12 @@ class LoginViewController: UIViewController {
         view.addSubview(appNameLabel)
         
         emailTextField = UITextField()
+        emailTextField.placeholder = "xxx@cornell.edu"
+        view.addSubview(emailTextField)
         
+        pwTextField = UITextField()
+        pwTextField.placeholder = "xxxxxxxx"
+        view.addSubview(pwTextField)
         
         setupConstraints()
     }
@@ -59,6 +64,10 @@ class LoginViewController: UIViewController {
 //            make.width.equalTo(200)
             make.bottom.equalToSuperview().offset(-600)
             make.centerX.equalToSuperview()
+        }
+        
+        emailTextField.snp.makeConstraints{ make in
+//            make.width
         }
     }
 
