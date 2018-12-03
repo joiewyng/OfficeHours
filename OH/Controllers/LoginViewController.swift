@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     
     var loginButton: UIButton!
     var appNameLabel: UILabel!
+    var emailTextField: UITextField!
+    var pwTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         
         loginButton = UIButton()
-        loginButton.setTitle("Sign in with Google", for: .normal)
+        loginButton.setTitle("Sign in", for: .normal)
         loginButton.setTitleColor(UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0), for: .normal)
         loginButton.backgroundColor = .white
         loginButton.layer.cornerRadius = 10
@@ -35,6 +37,8 @@ class LoginViewController: UIViewController {
         appNameLabel.textColor = .white
         appNameLabel.font = appNameLabel.font.withSize(70)
         view.addSubview(appNameLabel)
+        
+        emailTextField = UITextField()
         
         
         setupConstraints()
