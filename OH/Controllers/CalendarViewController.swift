@@ -99,6 +99,7 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     
     func selectCourse(selectedCourse: Course) {
         courseList.append(selectedCourse)
+        self.tableView.reloadData()
     }
     
     func setupConstraints(){

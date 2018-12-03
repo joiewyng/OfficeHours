@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,  GIDSignInDelegate {
         window = UIWindow()
         window?.backgroundColor = .white
         
-        GIDSignIn.sharedInstance().clientID = "737395260496-mj5p2lbllj8bgpgriscgai4chas60pad.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance().clientID = "737395260496-mj5p2lbllj8bgpgriscgai4chas60pad.apps.googleusercontent.com"
+//        GIDSignIn.sharedInstance().delegate = self
         
         UINavigationBar.appearance().barTintColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         UINavigationBar.appearance().tintColor = .white

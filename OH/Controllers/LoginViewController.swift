@@ -39,25 +39,40 @@ class LoginViewController: UIViewController {
         view.addSubview(appNameLabel)
         
         emailTextField = UITextField()
-        emailTextField.placeholder = "xxx@cornell.edu"
+        emailTextField.textColor = .white
+        emailTextField.tintColor = .white
+        emailTextField.textAlignment = .center
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         view.addSubview(emailTextField)
         
         pwTextField = UITextField()
-        pwTextField.placeholder = "xxxxxxxx"
+        pwTextField.textAlignment = .center
+        pwTextField.textColor = .white
+        pwTextField.tintColor = .white
+        pwTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         view.addSubview(pwTextField)
         
         setupConstraints()
     }
     
     func setupConstraints(){
-        loginButton.snp.makeConstraints { make in
-          
-            make.height.equalTo(48)
-            make.width.equalTo(200)
-            make.bottom.equalToSuperview().offset(-200)
+        
+        emailTextField.snp.makeConstraints{ make in
+            make.top.equalTo(appNameLabel.snp.bottom).offset(300)
+            make.centerX.equalToSuperview().offset(-40)
+        }
+        pwTextField.snp.makeConstraints{ make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(30)
             make.centerX.equalToSuperview()
         }
-        
+        loginButton.snp.makeConstraints { make in
+            make.height.equalTo(48)
+            make.width.equalTo(200)
+            make.top.equalTo(pwTextField.snp.bottom).offset(30)
+            make.centerX.equalToSuperview()
+        }
         appNameLabel.snp.makeConstraints { make in
             
             make.height.equalTo(70)
@@ -66,20 +81,22 @@ class LoginViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        emailTextField.snp.makeConstraints{ make in
-//            make.width
-        }
     }
 
     @objc func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
                       withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            let loginStatus = true
-            UserDefaults.standard.set(true, forKey: "loginStatus")
-        } else {
-//            print("\(error.localizedDescription)")
-        }
+//        if (error == nil) {
+//            // Perform any operations on signed in user here.
+//            let loginStatus = true
+//            UserDefaults.standard.set(true, forKey: "loginStatus")
+//        } else {
+////            print("\(error.localizedDescription)")
+//        }
+//
+        // make post request to db
+        self.present(OHTabBarController(), animated: true, completion: nil)
+//        let appdelegate = AppDelegate()
+//        appdelegate.window?.rootViewController = OHTabBarController()
     }
 }
 
