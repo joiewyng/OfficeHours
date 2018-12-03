@@ -64,12 +64,10 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let voteLayout = UICollectionViewFlowLayout()
         voteLayout.scrollDirection = .vertical
-        print(voteLayout.itemSize)
-        print(voteLayout.estimatedItemSize)
 //        voteLayout.minimumInteritemSpacing = 8
 //        voteLayout.minimumLineSpacing = 8
         voteView = UICollectionView(frame: .zero, collectionViewLayout: voteLayout)
-        
+        voteView.backgroundColor = .white
         voteView.dataSource = self
         voteView.delegate = self
         voteView.register(VoteCollectionViewCell.self, forCellWithReuseIdentifier: voteCellReuseIdentifier)
