@@ -9,16 +9,22 @@
 import UIKit
 import SnapKit
 
+protocol SelectDelegate {
+    func selectCourse(selectedCourse: Course)
+}
+
 class AddClassModalViewController: UIViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
+    
     var searchController: UISearchController!
     var tableView: UITableView!
     let fullScreenSize = UIScreen.main.bounds.size
+    var delegate: SelectDelegate!
     
     var searchResults: [Course]! = []
     var selectedCourse: Course = Course(titleLong: "", subject: "", catalogNbr: "", instructors: [Instructor(name: "John Doe", netid: "")])
     let padding: CGFloat = 8
     
-//    var selectDelegate: SongDelegate!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +35,7 @@ class AddClassModalViewController: UIViewController, UISearchResultsUpdating, UI
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search e.g. 'CS 2100'"
+        searchController.searchBar.placeholder = "Search e.g. 'CS 2110'"
         searchController.searchBar.sizeToFit()
         
         view.addSubview(searchController.searchBar)
@@ -70,9 +76,11 @@ class AddClassModalViewController: UIViewController, UISearchResultsUpdating, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCourse = searchResults[indexPath.row]
-        
+        delegate.selectCourse(selectedCourse: selectedCourse)
         dismiss(animated: true)
     }
+
+    
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             if (!searchText.isEmpty) && (searchText.contains(" ")){

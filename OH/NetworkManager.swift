@@ -14,7 +14,9 @@ import SwiftyJSON
 class NetworkManager{
     
     private static let rosterURL = "https://classes.cornell.edu/api/2.0/search/classes.json?"
+    private static let dbURL = ""
     
+//    static func postUserEmail(email: String, didPost: @escaping([]))
     static func getCourseBasicInfo(searchText: String, didGetCourse: @escaping([Course]) -> Void) {
         let parameters: [String: Any] = ["roster": "FA18", "subject": searchText.components(separatedBy: " ")[0], "q": searchText.components(separatedBy: " ")[1]]
         Alamofire.request(rosterURL,

@@ -12,7 +12,7 @@ import CalendarKit
 import DateToolsSwift
 
 //class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
-class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate  {
+class CalendarViewController: DayViewController, UITableViewDataSource, UITableViewDelegate, SelectDelegate  {
     
     let formatter = DateFormatter()
 //    private weak var calendar: FSCalendar!
@@ -64,7 +64,8 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
         
 
 //        getCourses()
-        courseList = [Course(titleLong: "Introduction to Rapid Prototyping and Physical Computing", subject: "INFO", catalogNbr: "4320", instructors: [Instructor(name: "Francois Guimbretiere", netid: "fvg3")])]
+//        courseList = [Course(titleLong: "Introduction to Rapid Prototyping and Physical Computing", subject: "INFO", catalogNbr: "4320", instructors: [Instructor(name: "Francois Guimbretiere", netid: "fvg3")])]
+        courseList = []
         reloadData()
         
         tableView = UITableView(frame: .zero)
@@ -91,14 +92,22 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //    }
     @objc func pushModal(_ target: UIButton) {
         let addModalVC = AddClassModalViewController()
+        addModalVC.delegate = self
         navigationController?.present(addModalVC, animated: true)
     }
+    
+    
+    func selectCourse(selectedCourse: Course) {
+        courseList.append(selectedCourse)
+        self.tableView.reloadData()
+    }
+    
     func setupConstraints(){
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(400)
             make.leading.trailing.bottom.equalToSuperview()
 //            make.bottom.equalTo(self.view.snp.bottom).offset(-20)
-            make.centerX.equalTo(self.view.snp.centerX)
+            make.centerX.equalToSuperview()
         }
     }
     

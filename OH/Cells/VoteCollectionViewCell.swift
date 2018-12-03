@@ -58,34 +58,7 @@ class VoteCollectionViewCell: UICollectionViewCell{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    func setupConstraints() {
-//        courseAbbrvLabel.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(contentView.snp.top).offset(10)
-//        }
-//        courseNameLabel.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(courseAbbrvLabel.snp.bottom).offset(5)
-//        }
-//        instructor.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(courseNameLabel.snp.bottom).offset(10)
-//        }
-//        dayTimeLabel.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(instructor.snp.bottom).offset(10)
-//        }
-//        dayTimeLabel2.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(dayTimeLabel.snp.bottom).offset(10)
-//        }
-//    }
+ 
     override func updateConstraints() {
         courseAbbrvLabel.snp.makeConstraints { make in
 //            make.leading.equalTo(contentView).offset(20)
