@@ -164,7 +164,8 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
 //                    if bool{
 //                        var day = week[i]
 //                        if (day == "monday") {
-//                            event.startDate = Date(dateString: "20181203", format: "YYYY.MM.dd")
+//                            let startTime = model.start_time
+//                            event.startDate = Date(dateString: "20181203", format: "yyyy.MM.dd HH.mm")
 //                            event.endDate = Date(dateString: "20181203", format: "YYYY.MM.dd")
 //
 //                            // Add info: event title, subtitle, location to the array of Strings
