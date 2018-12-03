@@ -33,12 +33,14 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewWillAppear(animated)
         
         segmentControl.selectedSegmentIndex = 0
+        switchView()
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Vote/Request"
+        
         
         
         let instructor = Instructor(name: "Francois Guimbretiere", netid: "fvg3")

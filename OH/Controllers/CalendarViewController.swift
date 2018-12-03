@@ -21,25 +21,25 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     var courseList: [Course]!
     let reuseIdentifier = "courseCellReuse"
     
-    var calendarData = [["INFO4320",
-                        "François Guimbretière",
-                        "Gates Hall"],
-        
-                        ["CS2110",
-                         "D. Gries",
-                        "Statler Hall"],
-                        
-                        ["INFO4320",
-                        "François Guimbretière",
-                        "Gates Hall"],
-                        
-                        
-                        ["CS2110",
-                        "D. Gries",
-                        "Statler Hall"],
-                        ]
+//    var calendarData = [["INFO4320",
+//                        "François Guimbretière",
+//                        "Gates Hall"],
+//
+//                        ["CS2110",
+//                         "D. Gries",
+//                        "Statler Hall"],
+//
+//                        ["INFO4320",
+//                        "François Guimbretière",
+//                        "Gates Hall"],
+//
+//
+//                        ["CS2110",
+//                        "D. Gries",
+//                        "Statler Hall"],
+//                        ]
     
-    
+    var calendarData = []
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Office Hour"
@@ -134,61 +134,62 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     }
     
     // Return an array of EventDescriptors for particular date
-//    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-//        var models = EventDescriptor(date)// Get events (models) from the storage / API
-//
-//        var events = [Event]()
-//
-//        for model in models {
-//            // Create new EventView
-//            let event = Event()
-//            // Specify StartDate and EndDate
-//            event.startDate = model.startDate
-//            event.endDate = model.endDate
-//            // Add info: event title, subtitle, location to the array of Strings
-//            var info = [model.title, model.location]
-//            info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
-//            // Set "text" value of event by formatting all the information needed for display
-//            event.text = info.reduce("", {$0 + $1 + "\n"})
-//            events.append(event)
-//        }
-//        return events
-//    }
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
+        var models = EventDescriptor(date)// Get events (models) from the storage / API
+//        var models = NetworkManager.get
+        
         var events = [Event]()
-        var colors = [UIColor.blue,
-                      UIColor.yellow,
-                      UIColor.green,
-                      UIColor.red]
-        
-        for i in 0...4 {
+
+        for model in models {
+            // Create new EventView
             let event = Event()
-            let duration = Int(arc4random_uniform(160) + 60)
-            let datePeriod = TimePeriod(beginning: date,
-                                        chunk: TimeChunk.dateComponents(minutes: duration))
-            
-            event.startDate = datePeriod.beginning!
-            event.endDate = datePeriod.end!
-            
-            var info = calendarData[Int(arc4random_uniform(UInt32(calendarData.count)))]
-            
-            let timezone = TimeZone.ReferenceType.default
-            info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
-            info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
+            // Specify StartDate and EndDate
+            event.startDate = model.startDate
+            event.endDate = model.endDate
+            // Add info: event title, subtitle, location to the array of Strings
+            var info = [model.title, model.location]
+            info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
+            // Set "text" value of event by formatting all the information needed for display
             event.text = info.reduce("", {$0 + $1 + "\n"})
-            event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
-            event.isAllDay = Int(arc4random_uniform(2)) % 2 == 0
-            
             events.append(event)
-            
-            let nextOffset = Int(arc4random_uniform(250) + 40)
-            date = date.add(TimeChunk.dateComponents(minutes: nextOffset))
-            event.userInfo = String(i)
         }
-        
         return events
     }
+//    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
+//        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
+//        var events = [Event]()
+//        var colors = [UIColor.blue,
+//                      UIColor.yellow,
+//                      UIColor.green,
+//                      UIColor.red]
+//
+//        for i in 0...4 {
+//            let event = Event()
+//            let duration = Int(arc4random_uniform(160) + 60)
+//            let datePeriod = TimePeriod(beginning: date,
+//                                        chunk: TimeChunk.dateComponents(minutes: duration))
+//
+//            event.startDate = datePeriod.beginning!
+//            event.endDate = datePeriod.end!
+//
+//            var info = calendarData[Int(arc4random_uniform(UInt32(calendarData.count)))]
+//
+//            let timezone = TimeZone.ReferenceType.default
+//            info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
+//            info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
+//            event.text = info.reduce("", {$0 + $1 + "\n"})
+//            event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
+//            event.isAllDay = Int(arc4random_uniform(2)) % 2 == 0
+//
+//            events.append(event)
+//
+//            let nextOffset = Int(arc4random_uniform(250) + 40)
+//            date = date.add(TimeChunk.dateComponents(minutes: nextOffset))
+//            event.userInfo = String(i)
+//        }
+//
+//        return events
+//    }
     
     // get courses from supposably JSON, now hard-coded
 //    func getCourses() {

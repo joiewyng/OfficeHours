@@ -20,6 +20,8 @@ class AddClassModalViewController: UIViewController, UISearchResultsUpdating, UI
     let fullScreenSize = UIScreen.main.bounds.size
     var delegate: SelectDelegate!
     
+    var nameLabel = UILabel()
+    
     var searchResults: [Course]! = []
     var selectedCourse: Course = Course(titleLong: "", subject: "", catalogNbr: "", instructors: [Instructor(name: "John Doe", netid: "")])
     let padding: CGFloat = 8
@@ -62,7 +64,7 @@ class AddClassModalViewController: UIViewController, UISearchResultsUpdating, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
         var course = searchResults[indexPath.row]
-        var nameLabel = UILabel()
+        
         nameLabel.text = "\(course.subject) \(course.catalogNbr) \(course.titleLong)"
         nameLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)  // dark grey
         cell.addSubview(nameLabel)

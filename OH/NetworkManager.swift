@@ -16,6 +16,8 @@ class NetworkManager{
     private static let rosterURL = "https://classes.cornell.edu/api/2.0/search/classes.json?"
     private static let dbURL = ""
     
+    private static let coursesURL = "/course/get_hours?"
+    
 //    static func postUserEmail(email: String, didPost: @escaping([]))
     static func getCourseBasicInfo(searchText: String, didGetCourse: @escaping([Course]) -> Void) {
         let parameters: [String: Any] = ["roster": "FA18", "subject": searchText.components(separatedBy: " ")[0], "q": searchText.components(separatedBy: " ")[1]]
@@ -29,6 +31,28 @@ class NetworkManager{
                     let jsonDecoder = JSONDecoder()
                     if let courseResponse = try? jsonDecoder.decode(CourseSearchResponse.self, from: data) {
                             didGetCourse(courseResponse.data.classes)
+                    } else {
+                        print("invalid response data")
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    print(response.request?.url)
+                }
+        }
+    }
+    
+    static func getCourseOfficeHours(searchText: String, didGetOfficeHours: @escaping([OfficeHour]) -> Void) {
+        let parameters: [String: Any] = ["subj": searchText.components(separatedBy: " ")[0], "nbr": searchText.components(separatedBy: " ")[1]]
+        Alamofire.request(coursesURL,
+                          method: .get,
+                          parameters: parameters)
+            .validate()
+            .responseData { response in
+                switch response.result{
+                case .success(let data):
+                    let jsonDecoder = JSONDecoder()
+                    if let hourResponse = try? jsonDecoder.decode(CourseOHSearchResponse.self, from: data) {
+                        didGetOfficeHours(hourResponse.data)
                     } else {
                         print("invalid response data")
                     }

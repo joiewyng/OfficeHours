@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
         
         emailTextField.snp.makeConstraints{ make in
             make.top.equalTo(appNameLabel.snp.bottom).offset(300)
-            make.centerX.equalToSuperview().offset(-40)
+            make.centerX.equalToSuperview()
         }
         pwTextField.snp.makeConstraints{ make in
             make.top.equalTo(emailTextField.snp.bottom).offset(30)
