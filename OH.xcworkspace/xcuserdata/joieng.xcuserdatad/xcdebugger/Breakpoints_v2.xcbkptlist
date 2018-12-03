@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OH/Controllers/VoteandRequestViewController.swift"
-            timestampString = "565483254.098115"
+            filePath = "OH/Cells/VoteCollectionViewCell.swift"
+            timestampString = "565493429.183863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "addVote()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

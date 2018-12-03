@@ -15,6 +15,7 @@ struct ProfOH: Codable {
     var endTime: String
 //    var name: String
     var location: String
+    //var votes: CLong
     
     init(instructor: Instructor, day: String, startTime: String, endTime: String, location: String) {
         self.instructor = instructor
@@ -23,6 +24,7 @@ struct ProfOH: Codable {
         self.endTime = endTime
 //        self.name = name
         self.location = location
+        //self.votes = votes
     }
 }
 struct TAOH: Codable {
@@ -32,6 +34,7 @@ struct TAOH: Codable {
     var endTime: String
     var name: String
     var location: String
+    //var votes: CLong
     
     init(instructor: Instructor, day: String, startTime: String, endTime: String, name: String, location: String) {
         self.instructor = instructor
@@ -40,6 +43,7 @@ struct TAOH: Codable {
         self.endTime = endTime
         self.name = name
         self.location = location
+       // self.votes = votes
     }
 }
 

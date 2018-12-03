@@ -26,6 +26,7 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var titleTextField: UITextField!
     var instructorTextField: UITextField!
     var timeLocationTextField: UITextField!
+    var proofTextField: UITextField!
     var submitButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +58,7 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Vote View
         titleLabel1 = UILabel()
         titleLabel1.text = "Vote for Office Hours"
+        titleLabel1.textAlignment = .center
         titleLabel1.font = UIFont.systemFont(ofSize: 30)
         titleLabel1.textColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         view.addSubview(titleLabel1)
@@ -69,7 +71,7 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //        voteLayout.minimumInteritemSpacing = 8
 //        voteLayout.minimumLineSpacing = 8
         voteView = UICollectionView(frame: .zero, collectionViewLayout: voteLayout)
-        
+        voteView.backgroundColor = .white
         voteView.dataSource = self
         voteView.delegate = self
         voteView.register(VoteCollectionViewCell.self, forCellWithReuseIdentifier: voteCellReuseIdentifier)
@@ -80,7 +82,7 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Request View
         titleLabel = UILabel()
         titleLabel.text = "Request Office Hour"
-        titleLabel.font = UIFont.systemFont(ofSize: 25)
+        titleLabel.font = UIFont.systemFont(ofSize: 30)
         titleLabel.textColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
         view.addSubview(titleLabel)
         
@@ -99,10 +101,10 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         timeLocationLabel.font = UIFont.systemFont(ofSize: 20)
         view.addSubview(timeLocationLabel)
         
-//        proofLabel = UILabel()
-//        proofLabel.text = "Add Proof"
-//        proofLabel.font = UIFont.systemFont(ofSize: 20)
-//        view.addSubview(proofLabel)
+        proofLabel = UILabel()
+        proofLabel.text = "Add Proof"
+        proofLabel.font = UIFont.systemFont(ofSize: 20)
+        view.addSubview(proofLabel)
         
         titleTextField = UITextField()
         titleTextField.bottomBorder()
@@ -115,6 +117,11 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         timeLocationTextField = UITextField()
         timeLocationTextField.bottomBorder()
         view.addSubview(timeLocationTextField)
+        
+        proofTextField = UITextField()
+        proofTextField.placeholder = "Please include a link as evidence."
+        proofTextField.bottomBorder()
+        view.addSubview(proofTextField)
         
         submitButton = UIButton()
         submitButton.backgroundColor = UIColor(red:0.89, green:0.24, blue:0.34, alpha:1.0)
@@ -131,10 +138,11 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         courseLabel.isHidden = true
         instructorLabel.isHidden = true
         timeLocationLabel.isHidden = true
-//        proofLabel.isHidden = true
+        proofLabel.isHidden = true
         titleTextField.isHidden = true
         instructorTextField.isHidden = true
         timeLocationTextField.isHidden = true
+        proofTextField.isHidden = true
         submitButton.isHidden = true
         
         setupConstraints()
@@ -148,12 +156,13 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         //Vote view
         titleLabel1.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(40)
-            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
+            make.top.equalTo(segmentControl.snp.bottom).offset(30)
+            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(30)
+        
         }
         
         voteView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel1.snp.bottom).offset(40)
+            make.top.equalTo(titleLabel1.snp.bottom).offset(30)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(10)
             make.rightMargin.equalTo(self.view.snp_rightMargin).offset(-10)
             make.bottomMargin.equalTo(self.view.snp_bottomMargin).offset(-10)
@@ -161,7 +170,7 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         //Request view
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(40)
+            make.top.equalTo(segmentControl.snp.bottom).offset(30)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
         }
         courseLabel.snp.makeConstraints{make in
@@ -176,10 +185,11 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
             make.top.equalTo(instructorLabel.snp_bottomMargin).offset(100)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
         }
-//        proofLabel.snp.makeConstraints{make in
-//            make.top.equalTo(timeLocationLabel.snp_bottomMargin).offset(100)
-//            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
-//        }
+        proofLabel.snp.makeConstraints{make in
+            make.top.equalTo(timeLocationLabel.snp_bottomMargin).offset(100)
+            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
+        }
+        
         titleTextField.snp.makeConstraints{make in
             make.top.equalTo(courseLabel.snp_bottomMargin).offset(30)
             make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
@@ -198,8 +208,16 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
             make.height.equalTo(25)
             make.width.equalTo(300)
         }
+        
+        proofTextField.snp.makeConstraints{make in
+            make.top.equalTo(proofLabel.snp_bottomMargin).offset(30)
+            make.leftMargin.equalTo(self.view.snp_leftMargin).offset(40)
+            make.height.equalTo(25)
+            make.width.equalTo(300)
+        }
+
         submitButton.snp.makeConstraints{make in
-            make.bottom.equalTo(self.view.snp.bottom).offset(-150)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-135)
             make.centerX.equalTo(self.view.snp.centerX)
             make.height.equalTo(50)
             make.width.equalTo(200)
@@ -224,7 +242,7 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // We want || padding IMAGE padding IMAGE padding IMAGE padding ||
 
             let length = voteView.bounds.size.width
-            return CGSize(width: length, height: 300)
+            return CGSize(width: length, height: 200)
 
     }
 
@@ -247,10 +265,11 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
             courseLabel.isHidden = true
             instructorLabel.isHidden = true
             timeLocationLabel.isHidden = true
-//            proofLabel.isHidden = true
+            proofLabel.isHidden = true
             titleTextField.isHidden = true
             instructorTextField.isHidden = true
             timeLocationTextField.isHidden = true
+            proofTextField.isHidden = true
             submitButton.isHidden = true
         case 1: // request view
             titleLabel1.isHidden = true
@@ -259,10 +278,11 @@ class VoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
             courseLabel.isHidden = false
             instructorLabel.isHidden = false
             timeLocationLabel.isHidden = false
-//            proofLabel.isHidden = false
+            proofLabel.isHidden = false
             titleTextField.isHidden = false
             instructorTextField.isHidden = false
             timeLocationTextField.isHidden = false
+            proofTextField.isHidden = false
             submitButton.isHidden = false
         default:
             break;
