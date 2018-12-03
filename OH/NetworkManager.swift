@@ -14,9 +14,9 @@ import SwiftyJSON
 class NetworkManager{
     
     private static let rosterURL = "https://classes.cornell.edu/api/2.0/search/classes.json?"
-    private static let dbURL = ""
+    private static let dbURL = "http://35.227.46.82/login"
     
-    private static let coursesURL = "/course/get_hours?"
+    private static let coursesURL = "http://35.227.46.82/course/get_hours?"
     
     let deviceToken = UserDefaults.standard.string(forKey: "deviceTokenString") ?? ""
     
