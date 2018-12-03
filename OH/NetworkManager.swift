@@ -18,6 +18,15 @@ class NetworkManager{
     
     private static let coursesURL = "/course/get_hours?"
     
+    let deviceToken = UserDefaults.standard.string(forKey: "deviceTokenString") ?? ""
+    
+    static func postUserEmail(email: String, didPost: @escaping (String) -> Void) {
+        let parameters: Parameters = ["email": email]
+        Alamofire.request(dbURL, method: .post, parameters: parameters).responseJSON { response in
+            print(response)
+        }
+    }
+    
 //    static func postUserEmail(email: String, didPost: @escaping([]))
     static func getCourseBasicInfo(searchText: String, didGetCourse: @escaping([Course]) -> Void) {
         let parameters: [String: Any] = ["roster": "FA18", "subject": searchText.components(separatedBy: " ")[0], "q": searchText.components(separatedBy: " ")[1]]

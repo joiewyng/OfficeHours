@@ -5,11 +5,9 @@
 //  Created by Joie Ng on 11/18/18.
 //  Copyright © 2018 Joie Ng. All rights reserved.
 //
-
 import UIKit
 import SnapKit
 import GoogleSignIn
-
 class LoginViewController: UIViewController {
     
     var loginButton: UIButton!
@@ -43,7 +41,7 @@ class LoginViewController: UIViewController {
         emailTextField.tintColor = .white
         emailTextField.textAlignment = .center
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         view.addSubview(emailTextField)
         
         pwTextField = UITextField()
@@ -51,7 +49,7 @@ class LoginViewController: UIViewController {
         pwTextField.textColor = .white
         pwTextField.tintColor = .white
         pwTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         view.addSubview(pwTextField)
         
         setupConstraints()
@@ -76,27 +74,32 @@ class LoginViewController: UIViewController {
         appNameLabel.snp.makeConstraints { make in
             
             make.height.equalTo(70)
-//            make.width.equalTo(200)
+            //            make.width.equalTo(200)
             make.bottom.equalToSuperview().offset(-600)
             make.centerX.equalToSuperview()
         }
         
     }
-
     @objc func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
                       withError error: NSError!) {
-//        if (error == nil) {
-//            // Perform any operations on signed in user here.
-//            let loginStatus = true
-//            UserDefaults.standard.set(true, forKey: "loginStatus")
-//        } else {
-////            print("\(error.localizedDescription)")
-//        }
-//
+        //        if (error == nil) {
+        //            // Perform any operations on signed in user here.
+        //            let loginStatus = true
+        //            UserDefaults.standard.set(true, forKey: "loginStatus")
+        //        } else {
+        ////            print("\(error.localizedDescription)")
+        //        }
+        //
         // make post request to db
         self.present(OHTabBarController(), animated: true, completion: nil)
-//        let appdelegate = AppDelegate()
-//        appdelegate.window?.rootViewController = OHTabBarController()
+        UserDefaults.standard.set(emailTextField.text, forKey: "name")
+        let email = emailTextField.text
+        NetworkManager.postUserEmail(email: email ?? "") { (response) in
+            print(response)
+        }
+        //        let appdelegate = AppDelegate()
+        //        appdelegate.window?.rootViewController = OHTabBarController()
     }
 }
+
 

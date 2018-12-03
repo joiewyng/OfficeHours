@@ -21,25 +21,26 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     var courseList: [Course]!
     let reuseIdentifier = "courseCellReuse"
     
-//    var calendarData = [["INFO4320",
-//                        "François Guimbretière",
-//                        "Gates Hall"],
-//
-//                        ["CS2110",
-//                         "D. Gries",
-//                        "Statler Hall"],
-//
-//                        ["INFO4320",
-//                        "François Guimbretière",
-//                        "Gates Hall"],
-//
-//
-//                        ["CS2110",
-//                        "D. Gries",
-//                        "Statler Hall"],
-//                        ]
+    var calendarData = [["INFO4320",
+                        "François Guimbretière",
+                        "Gates Hall"],
+
+                        ["CS2110",
+                         "D. Gries",
+                        "Statler Hall"],
+
+                        ["INFO4320",
+                        "François Guimbretière",
+                        "Gates Hall"],
+
+
+                        ["CS2110",
+                        "D. Gries",
+                        "Statler Hall"],
+                        ]
     
-    var calendarData = []
+//    var calendarData = [OfficeHour]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Office Hour"
@@ -98,9 +99,18 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     
     
     func selectCourse(selectedCourse: Course) {
-        courseList.append(selectedCourse)
+        var contain = false
+        for course in courseList {
+            if course.titleLong == selectedCourse.titleLong {
+                contain = true
+            }
+        }
+        if contain == false || courseList.isEmpty {
+            courseList.append(selectedCourse)
+        }
         self.tableView.reloadData()
     }
+    
     
     func setupConstraints(){
         tableView.snp.makeConstraints { make in
@@ -135,25 +145,60 @@ class CalendarViewController: DayViewController, UITableViewDataSource, UITableV
     
     // Return an array of EventDescriptors for particular date
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-        var models = EventDescriptor(date)// Get events (models) from the storage / API
-//        var models = NetworkManager.get
-        
-        var events = [Event]()
+//        var models = EventDescriptor(date)// Get events (models) from the storage / API
+        var models = [OfficeHour]()
+        for course in courseList {
 
-        for model in models {
-            // Create new EventView
-            let event = Event()
-            // Specify StartDate and EndDate
-            event.startDate = model.startDate
-            event.endDate = model.endDate
-            // Add info: event title, subtitle, location to the array of Strings
-            var info = [model.title, model.location]
-            info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
-            // Set "text" value of event by formatting all the information needed for display
-            event.text = info.reduce("", {$0 + $1 + "\n"})
-            events.append(event)
+            NetworkManager.getCourseOfficeHours(searchText: course.subject+" "+course.catalogNbr, didGetOfficeHours: { ([OfficeHour]) in
+                model += officeHour
+            })
+            var events = [Event]()
+            for model in models {
+                // Create new EventView
+                let event = Event()
+                // Specify StartDate and EndDate
+                let week = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+                for i in 0...6 {
+                    var bool = model.days[i]
+                    if bool{
+                        var day = week[i]
+                        if (day == "monday"){
+                            event.startDate = Date().
+                                .isToday().previous(.monday)
+            
+                        }
+                        if (day == "tuesday"){
+                            
+                        }
+                    }
+                    if bool {
+                        var day = week[i]
+                        
+                        event.startDate = Date.isToday().previous(.sunday)
+                        event.endDate = model.end_time
+                    }
+                }
+
+                // Add info: event title, subtitle, location to the array of Strings
+                var info = [course.subject+course.catalogNbr, model.location]
+                info.append("\(datePeriod.beginning!.format(with: "HH:mm")) - \(datePeriod.end!.format(with: "HH:mm"))")
+                // Set "text" value of event by formatting all the information needed for display
+                event.text = info.reduce("", {$0 + $1 + "\n"})
+                events.append(event)
+            }
         }
+        calendarData = models
+
+
         return events
+    }
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay
     }
 //    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
 //        var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
